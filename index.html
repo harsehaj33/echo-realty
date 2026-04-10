@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Echo Realty — Affordable Housing, Reimagined</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --sage:       #2D6A4F;
+  --sage-light: #40916C;
+  --sage-pale:  #B7E4C7;
+  --sage-ghost: #F0FAF4;
+  --ink:        #0F1C14;
+  --ink-60:     rgba(15,28,20,0.6);
+  --ink-30:     rgba(15,28,20,0.3);
+  --ink-10:     rgba(15,28,20,0.1);
+  --cream:      #FAF8F4;
+  --white:      #FFFFFF;
+  --gold:       #D4A853;
+  --gold-pale:  #FDF3DF;
+  --coral:      #E87D5A;
+  --sky:        #E8F4F9;
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  32px;
+  --shadow-sm:  0 2px 8px rgba(15,28,20,0.06);
+  --shadow-md:  0 8px 32px rgba(15,28,20,0.10);
+  --shadow-lg:  0 24px 64px rgba(15,28,20,0.14);
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --nav-h: 68px;
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+ul{list-style:none}
+input,select,textarea{font-family:inherit}
+
+/* ===== TYPOGRAPHY ===== */
+.display-xl{font-family:var(--font-display);font-size:clamp(3rem,6vw,5.5rem);line-height:1.08;letter-spacing:-0.02em}
+.display-lg{font-family:var(--font-display);font-size:clamp(2.25rem,4.5vw,3.75rem);line-height:1.1;letter-spacing:-0.02em}
+.display-md{font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);line-height:1.2;letter-spacing:-0.01em}
+.display-sm{font-family:var(--font-display);font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.25}
+.text-xl{font-size:1.25rem;line-height:1.5}
+.text-lg{font-size:1.0625rem;line-height:1.6}
+.text-base{font-size:1rem;line-height:1.6}
+.text-sm{font-size:0.875rem;line-height:1.5}
+.text-xs{font-size:0.75rem;line-height:1.4;letter-spacing:0.04em;text-transform:uppercase;font-weight:600}
+.font-light{font-weight:300}
+.font-normal{font-weight:400}
+.font-medium{font-weight:500}
+.font-semibold{font-weight:600}
+em.serif{font-family:var(--font-display);font-style:italic;font-weight:400}
+
+/* ===== LAYOUT ===== */
+.container{max-width:1280px;margin-inline:auto;padding-inline:clamp(1rem,4vw,3rem)}
+.section{padding-block:clamp(4rem,8vw,8rem)}
+.section-sm{padding-block:clamp(2rem,4vw,4rem)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.flex{display:flex}
+.flex-col{flex-direction:column}
+.items-center{align-items:center}
+.justify-between{justify-content:space-between}
+.gap-sm{gap:0.5rem}
+.gap-md{gap:1rem}
+.gap-lg{gap:1.5rem}
+.gap-xl{gap:2rem}
+.text-center{text-align:center}
+@media(max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr}.hide-mobile{display:none}}
+
+/* ===== COLORS ===== */
+.bg-cream{background:var(--cream)}
+.bg-white{background:var(--white)}
+.bg-sage{background:var(--sage)}
+.bg-sage-ghost{background:var(--sage-ghost)}
+.bg-ink{background:var(--ink)}
+.bg-gold-pale{background:var(--gold-pale)}
+.color-sage{color:var(--sage)}
+.color-gold{color:var(--gold)}
+.color-white{color:var(--white)}
+.color-ink-60{color:var(--ink-60)}
+
+/* ===== COMPONENTS ===== */
+
+/* Pill badge */
+.pill{display:inline-flex;align-items:center;gap:0.375rem;padding:0.3rem 0.875rem;border-radius:999px;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase}
+.pill-sage{background:var(--sage-ghost);color:var(--sage)}
+.pill-gold{background:var(--gold-pale);color:#9A6B20}
+.pill-white{background:rgba(255,255,255,0.15);color:var(--white)}
+.pill-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;opacity:0.7}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.75rem;border-radius:var(--radius-md);font-size:0.9375rem;font-weight:500;transition:all 0.22s var(--ease-out);cursor:pointer;border:none;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background 0.2s}
+.btn:hover::after{background:rgba(255,255,255,0.08)}
+.btn-primary{background:var(--sage);color:var(--white)}
+.btn-primary:hover{background:var(--sage-light);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink-30)}
+.btn-outline:hover{border-color:var(--sage);color:var(--sage);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.35)}
+.btn-ghost:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.6)}
+.btn-gold{background:var(--gold);color:var(--white)}
+.btn-gold:hover{background:#c49643;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-lg{padding:1rem 2.25rem;font-size:1.0625rem}
+.btn-sm{padding:0.5rem 1.125rem;font-size:0.875rem}
+.btn-icon{width:44px;height:44px;padding:0;border-radius:50%;justify-content:center}
+
+/* Cards */
+.card{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--ink-10);transition:all 0.3s var(--ease-out)}
+.card:hover{border-color:var(--sage-pale);box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.card-p{padding:2rem}
+.card-image{border-radius:var(--radius-lg) var(--radius-lg) 0 0;width:100%;height:220px;object-fit:cover;background:linear-gradient(135deg,var(--sage-ghost),var(--sage-pale))}
+
+/* Section header */
+.section-header{margin-bottom:3.5rem}
+.section-header .display-lg{margin-top:0.75rem}
+
+/* ===== NAVIGATION ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);transition:all 0.35s var(--ease-out)}
+.nav-inner{display:flex;align-items:center;gap:1rem;height:100%;max-width:1280px;margin-inline:auto;padding-inline:clamp(1rem,4vw,3rem)}
+.nav-scrolled{background:rgba(250,248,244,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--ink-10);box-shadow:var(--shadow-sm)}
+.nav-transparent .nav-logo path,.nav-transparent .nav-wordmark{fill:var(--white);color:var(--white)}
+.nav-logo-wrap{display:flex;align-items:center;gap:0.625rem;flex-shrink:0}
+.nav-wordmark{font-family:var(--font-display);font-size:1.375rem;color:var(--ink);letter-spacing:-0.01em}
+.nav-wordmark span{color:var(--sage)}
+.nav-links{display:flex;align-items:center;gap:0.25rem;margin-left:auto}
+.nav-link{padding:0.5rem 0.875rem;border-radius:var(--radius-sm);font-size:0.9375rem;font-weight:400;color:var(--ink);transition:all 0.2s;white-space:nowrap}
+.nav-link:hover{background:var(--ink-10);color:var(--sage)}
+.nav-link.active{color:var(--sage);font-weight:500}
+.nav-cta{margin-left:0.75rem}
+.nav-state-selector{display:flex;align-items:center;gap:0.375rem;padding:0.375rem 0.75rem;border-radius:var(--radius-sm);border:1px solid var(--ink-10);font-size:0.8125rem;font-weight:500;cursor:pointer;transition:all 0.2s;background:var(--white)}
+.nav-state-selector:hover{border-color:var(--sage);color:var(--sage)}
+/* Dropdown */
+.has-dropdown{position:relative}
+.dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--white);border:1px solid var(--ink-10);border-radius:var(--radius-lg);padding:0.75rem;min-width:220px;opacity:0;visibility:hidden;pointer-events:none;transition:all 0.2s var(--ease-out);box-shadow:var(--shadow-lg)}
+.has-dropdown:hover .dropdown{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.dropdown a{display:block;padding:0.625rem 0.875rem;border-radius:var(--radius-sm);font-size:0.9rem;color:var(--ink-60);transition:all 0.15s}
+.dropdown a:hover{background:var(--sage-ghost);color:var(--sage);padding-left:1.125rem}
+.mobile-menu-btn{display:none;margin-left:auto}
+@media(max-width:1024px){.nav-links{display:none}.mobile-menu-btn{display:flex}}
+
+/* ===== MOBILE MENU ===== */
+.mobile-menu{position:fixed;inset:0;z-index:200;background:var(--ink);padding:1.5rem;transform:translateX(100%);transition:transform 0.35s var(--ease-out);overflow-y:auto}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem}
+.mobile-nav-link{display:block;padding:1rem 0;font-size:1.25rem;font-weight:300;color:rgba(255,255,255,0.85);border-bottom:1px solid rgba(255,255,255,0.08);transition:color 0.2s}
+.mobile-nav-link:hover{color:var(--sage-pale)}
+.mobile-nav-sub{font-size:1rem;padding:0.625rem 0;color:rgba(255,255,255,0.5)}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0F1C14 0%,#1B3A2A 45%,#2D6A4F 100%)}
+.hero-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 70% 20%,rgba(45,106,79,0.4) 0%,transparent 50%),radial-gradient(circle at 20% 80%,rgba(64,145,108,0.3) 0%,transparent 40%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+.hero-content{position:relative;z-index:2;padding-top:var(--nav-h)}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;min-height:calc(100vh - var(--nav-h));padding-block:4rem}
+.hero-eyebrow{color:var(--sage-pale);font-size:0.8125rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--sage-pale)}
+.hero-title{color:var(--white);margin-bottom:1.5rem}
+.hero-title em{color:var(--sage-pale)}
+.hero-body{color:rgba(255,255,255,0.68);font-size:1.125rem;font-weight:300;line-height:1.7;margin-bottom:2.5rem;max-width:480px}
+.hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:1rem}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.12)}
+.hero-stat-num{font-family:var(--font-display);font-size:2.25rem;color:var(--white);line-height:1}
+.hero-stat-label{font-size:0.8rem;color:rgba(255,255,255,0.5);margin-top:0.25rem;text-transform:uppercase;letter-spacing:0.06em}
+/* Hero search card */
+.hero-search-card{background:rgba(255,255,255,0.07);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.14);border-radius:var(--radius-xl);padding:2.25rem;position:relative}
+.hero-search-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--radius-xl);background:linear-gradient(135deg,rgba(183,228,199,0.25),rgba(255,255,255,0.04),rgba(45,106,79,0.2));z-index:-1;pointer-events:none}
+.search-label{font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem}
+.search-input{width:100%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:var(--radius-md);padding:0.875rem 1.125rem;color:var(--white);font-size:1rem;font-family:var(--font-body);transition:all 0.2s;outline:none}
+.search-input::placeholder{color:rgba(255,255,255,0.35)}
+.search-input:focus{border-color:var(--sage-pale);background:rgba(255,255,255,0.14)}
+.search-select{width:100%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:var(--radius-md);padding:0.875rem 1.125rem;color:var(--white);font-size:1rem;font-family:var(--font-body);outline:none;appearance:none;cursor:pointer;transition:all 0.2s;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.search-select option{background:var(--ink);color:var(--white)}
+.search-select:focus{border-color:var(--sage-pale)}
+.search-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.875rem;margin-bottom:0.875rem}
+.search-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-bottom:0.875rem}
+.search-btn{width:100%;padding:1rem;border-radius:var(--radius-md);background:var(--sage);color:var(--white);font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:all 0.22s;display:flex;align-items:center;justify-content:center;gap:0.625rem}
+.search-btn:hover{background:var(--sage-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(45,106,79,0.4)}
+.search-card-title{font-family:var(--font-display);font-size:1.375rem;color:var(--white);margin-bottom:1.5rem}
+@media(max-width:1024px){.hero-inner{grid-template-columns:1fr;gap:2.5rem}.hero-stats{flex-wrap:wrap;gap:1.5rem}}
+
+/* ===== FEATURED LISTINGS ===== */
+.property-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--ink-10);transition:all 0.3s var(--ease-out)}
+.property-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.property-card-image{position:relative;height:220px;overflow:hidden}
+.property-card-image-bg{width:100%;height:100%;object-fit:cover;background:linear-gradient(135deg,var(--sage-ghost) 0%,var(--sage-pale) 100%);transition:transform 0.5s var(--ease-out)}
+.property-card:hover .property-card-image-bg{transform:scale(1.04)}
+.property-badge{position:absolute;top:1rem;left:1rem}
+.property-badge-affordable{background:var(--sage);color:var(--white);font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.75rem;border-radius:999px}
+.property-save-btn{position:absolute;top:1rem;right:1rem;width:36px;height:36px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:all 0.2s}
+.property-save-btn:hover{background:var(--white);transform:scale(1.1)}
+.property-card-body{padding:1.5rem}
+.property-price{font-family:var(--font-display);font-size:1.5rem;color:var(--ink)}
+.property-price span{font-size:0.875rem;font-weight:400;color:var(--ink-60);font-family:var(--font-body)}
+.property-address{font-size:0.9rem;color:var(--ink-60);margin:0.25rem 0 1rem}
+.property-meta{display:flex;gap:1.25rem;font-size:0.875rem;color:var(--ink-60);padding-top:1rem;border-top:1px solid var(--ink-10)}
+.property-meta-item{display:flex;align-items:center;gap:0.375rem}
+.property-meta-icon{width:16px;height:16px;opacity:0.6}
+/* Fake property image content */
+.prop-img-placeholder{width:100%;height:220px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;font-size:0.8rem;color:rgba(255,255,255,0.6);font-weight:500;letter-spacing:0.04em}
+
+/* ===== THREE PATHS / AUDIENCE ===== */
+.audience-card{border-radius:var(--radius-xl);padding:2.75rem;position:relative;overflow:hidden;transition:all 0.35s var(--ease-out);cursor:pointer}
+.audience-card::before{content:'';position:absolute;bottom:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:currentColor;opacity:0.06;transition:all 0.5s var(--ease-out)}
+.audience-card:hover::before{transform:scale(1.4);opacity:0.1}
+.audience-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.audience-card-tenant{background:var(--ink);color:var(--white)}
+.audience-card-owner{background:var(--sage);color:var(--white)}
+.audience-card-dev{background:var(--gold-pale);color:var(--ink)}
+.audience-icon{width:52px;height:52px;background:rgba(255,255,255,0.12);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.5rem}
+.audience-card-dev .audience-icon{background:rgba(0,0,0,0.06)}
+.audience-title{font-family:var(--font-display);font-size:1.75rem;margin-bottom:0.875rem}
+.audience-body{font-size:0.9375rem;line-height:1.65;opacity:0.75;margin-bottom:1.75rem}
+.audience-link{display:inline-flex;align-items:center;gap:0.5rem;font-weight:600;font-size:0.9rem;opacity:0.9;transition:gap 0.2s}
+.audience-card:hover .audience-link{gap:0.875rem}
+
+/* ===== WHO WE ARE / MISSION ===== */
+.mission-split{display:grid;grid-template-columns:5fr 4fr;gap:5rem;align-items:center}
+.mission-text .display-lg{margin-bottom:1.5rem}
+.mission-body{color:var(--ink-60);font-size:1.0625rem;line-height:1.75;margin-bottom:2rem}
+.mission-highlight{font-family:var(--font-display);font-size:1.25rem;font-style:italic;color:var(--sage);border-left:3px solid var(--sage);padding-left:1.25rem;line-height:1.5;margin:2rem 0}
+.mission-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.mission-stat{background:var(--sage-ghost);border-radius:var(--radius-lg);padding:1.75rem}
+.mission-stat-num{font-family:var(--font-display);font-size:2.75rem;color:var(--sage);line-height:1}
+.mission-stat-label{font-size:0.8125rem;color:var(--ink-60);margin-top:0.375rem;line-height:1.4}
+.awards-strip{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.75rem;padding-top:1.75rem;border-top:1px solid var(--ink-10)}
+.award-badge{display:flex;align-items:center;gap:0.625rem;padding:0.625rem 1rem;border-radius:var(--radius-md);border:1px solid var(--ink-10);font-size:0.8125rem;font-weight:500;color:var(--ink-60)}
+.award-badge-icon{font-size:1.125rem}
+@media(max-width:1024px){.mission-split{grid-template-columns:1fr;gap:3rem}}
+
+/* ===== SERVICES ===== */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.service-card{background:var(--white);border-radius:var(--radius-lg);padding:2rem;border:1px solid var(--ink-10);transition:all 0.3s var(--ease-out)}
+.service-card:hover{border-color:var(--sage-pale);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.service-icon{width:48px;height:48px;background:var(--sage-ghost);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:1.25rem;transition:all 0.3s}
+.service-card:hover .service-icon{background:var(--sage);transform:scale(1.05)}
+.service-card:hover .service-icon span{filter:brightness(10)}
+.service-title{font-size:1.0625rem;font-weight:600;margin-bottom:0.625rem}
+.service-body{font-size:0.9rem;color:var(--ink-60);line-height:1.6}
+@media(max-width:900px){.services-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.services-grid{grid-template-columns:1fr}}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-bg{background:var(--ink);position:relative;overflow:hidden}
+.testimonials-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(45,106,79,0.3),transparent 60%);pointer-events:none}
+.testimonial-track{display:flex;gap:1.5rem;overflow-x:auto;padding:0.5rem 0.5rem 1.5rem;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none}
+.testimonial-track::-webkit-scrollbar{display:none}
+.testimonial-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:2rem;min-width:340px;flex-shrink:0;scroll-snap-align:start;transition:all 0.3s}
+.testimonial-card:hover{background:rgba(255,255,255,0.1);border-color:rgba(183,228,199,0.3)}
+.testimonial-quote{font-family:var(--font-display);font-size:1.125rem;font-style:italic;color:rgba(255,255,255,0.88);line-height:1.6;margin-bottom:1.5rem}
+.testimonial-author-name{font-weight:600;color:var(--white);font-size:0.9375rem}
+.testimonial-author-role{font-size:0.8125rem;color:var(--sage-pale);margin-top:0.2rem}
+.testimonial-stars{color:var(--gold);font-size:0.875rem;margin-bottom:1rem;letter-spacing:2px}
+.testimonial-controls{display:flex;align-items:center;gap:0.75rem;margin-top:1.75rem}
+.t-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.25);border:none;cursor:pointer;transition:all 0.2s;padding:0}
+.t-dot.active{background:var(--sage-pale);width:24px;border-radius:4px}
+
+/* ===== AFFORDABLE HOUSING ===== */
+.ah-split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.ah-visual{position:relative}
+.ah-big-stat{background:var(--sage);border-radius:var(--radius-xl);padding:2.5rem;color:var(--white);text-align:center;position:relative;z-index:2}
+.ah-big-stat-num{font-family:var(--font-display);font-size:5rem;line-height:1;margin-bottom:0.5rem}
+.ah-big-stat-label{font-size:1rem;opacity:0.75;line-height:1.4}
+.ah-floating-card{position:absolute;background:var(--white);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:var(--shadow-lg);border:1px solid var(--ink-10)}
+.ah-floating-card-1{bottom:-1.5rem;right:-2rem;z-index:3}
+.ah-floating-card-2{top:-1.5rem;left:-2rem;z-index:3}
+.ah-floating-num{font-family:var(--font-display);font-size:1.5rem;color:var(--sage);line-height:1}
+.ah-floating-text{font-size:0.8125rem;color:var(--ink-60)}
+.ah-gap-visual{margin-top:1.5rem;background:var(--sage-ghost);border-radius:var(--radius-lg);padding:1.5rem;display:flex;align-items:center;gap:1rem}
+.ah-gap-bar-wrap{flex:1;background:var(--ink-10);border-radius:999px;height:8px;position:relative;overflow:visible}
+.ah-gap-bar{height:100%;border-radius:999px;background:var(--sage)}
+.ah-gap-labels{display:flex;justify-content:space-between;font-size:0.75rem;color:var(--ink-60);margin-top:0.5rem}
+.ah-accordion{margin-top:2rem}
+.ah-accordion-item{border-bottom:1px solid var(--ink-10)}
+.ah-accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0;font-size:1rem;font-weight:500;cursor:pointer;background:none;border:none;font-family:var(--font-body);color:var(--ink);text-align:left}
+.ah-accordion-trigger:hover{color:var(--sage)}
+.ah-accordion-icon{width:20px;height:20px;border-radius:50%;background:var(--ink-10);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s;font-size:0.75rem}
+.ah-accordion-body{max-height:0;overflow:hidden;transition:max-height 0.4s var(--ease-out)}
+.ah-accordion-body-inner{padding:0 0 1.25rem;font-size:0.9375rem;color:var(--ink-60);line-height:1.7}
+.ah-accordion-item.open .ah-accordion-icon{background:var(--sage);color:var(--white);transform:rotate(45deg)}
+.ah-accordion-item.open .ah-accordion-body{max-height:300px}
+@media(max-width:1024px){.ah-split{grid-template-columns:1fr;gap:3rem}.ah-floating-card{display:none}}
+
+/* ===== TEAM / COMMITMENT ===== */
+.commitment-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.commitment-card{background:var(--sage);border-radius:var(--radius-xl);padding:2.5rem;color:var(--white);position:relative;overflow:hidden;cursor:pointer;transition:all 0.35s var(--ease-out)}
+.commitment-card::after{content:'→';position:absolute;bottom:2rem;right:2rem;font-size:1.5rem;opacity:0.4;transition:all 0.3s}
+.commitment-card:hover::after{opacity:1;right:1.5rem}
+.commitment-card:hover{background:var(--sage-light)}
+.commitment-card:nth-child(2){background:var(--ink)}
+.commitment-card:nth-child(2):hover{background:#1a2f22}
+.commitment-card:nth-child(3){background:var(--gold-pale);color:var(--ink)}
+.commitment-card:nth-child(3)::after{color:var(--gold)}
+.commitment-card-num{font-family:var(--font-display);font-size:3.5rem;opacity:0.15;line-height:1;margin-bottom:1rem}
+.commitment-card-title{font-family:var(--font-display);font-size:1.4rem;margin-bottom:0.875rem}
+.commitment-card-body{font-size:0.9rem;opacity:0.72;line-height:1.65}
+@media(max-width:900px){.commitment-cards{grid-template-columns:1fr}}
+
+/* ===== PARTNERS ===== */
+.partners-strip{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:3rem;padding:2rem 0}
+.partner-logo{height:40px;opacity:0.45;transition:opacity 0.2s;filter:grayscale(1)}
+.partner-logo:hover{opacity:0.8}
+
+/* ===== PORTAL / CTA SECTION ===== */
+.portal-split{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.portal-card{border-radius:var(--radius-xl);padding:3rem;position:relative;overflow:hidden}
+.portal-card-tenant{background:var(--sage-ghost)}
+.portal-card-owner{background:var(--ink)}
+.portal-card-title{font-family:var(--font-display);font-size:1.875rem;margin-bottom:1rem}
+.portal-card-tenant .portal-card-title{color:var(--ink)}
+.portal-card-owner .portal-card-title{color:var(--white)}
+.portal-card-body{font-size:0.9375rem;line-height:1.65;margin-bottom:2rem}
+.portal-card-tenant .portal-card-body{color:var(--ink-60)}
+.portal-card-owner .portal-card-body{color:rgba(255,255,255,0.6)}
+.portal-feature-list{margin-bottom:2rem}
+.portal-feature{display:flex;align-items:center;gap:0.75rem;padding:0.5rem 0;font-size:0.9rem}
+.portal-card-tenant .portal-feature{color:var(--ink-60)}
+.portal-card-owner .portal-feature{color:rgba(255,255,255,0.6)}
+.portal-feature::before{content:'✓';width:20px;height:20px;background:var(--sage);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0}
+.portal-card-owner .portal-feature::before{background:rgba(183,228,199,0.2);color:var(--sage-pale)}
+.portal-bg-num{position:absolute;bottom:-1rem;right:-0.5rem;font-family:var(--font-display);font-size:9rem;font-weight:400;line-height:1;color:rgba(0,0,0,0.04);pointer-events:none;user-select:none}
+.portal-card-owner .portal-bg-num{color:rgba(255,255,255,0.04)}
+@media(max-width:900px){.portal-split{grid-template-columns:1fr}}
+
+/* ===== COMMUNITY PROGRAMS ===== */
+.program-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2.5rem}
+.program-card{background:var(--white);border:1px solid var(--ink-10);border-radius:var(--radius-lg);padding:2rem;display:flex;gap:1.25rem;align-items:flex-start;transition:all 0.3s var(--ease-out)}
+.program-card:hover{border-color:var(--sage-pale);box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.program-card-icon{font-size:1.75rem;flex-shrink:0;width:52px;height:52px;background:var(--sage-ghost);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center}
+.program-card-title{font-weight:600;font-size:1rem;margin-bottom:0.375rem}
+.program-card-body{font-size:0.875rem;color:var(--ink-60);line-height:1.6}
+@media(max-width:640px){.program-cards{grid-template-columns:1fr}}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:2fr 3fr;gap:4rem;align-items:start}
+.contact-info-item{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--ink-10)}
+.contact-info-icon{width:40px;height:40px;background:var(--sage-ghost);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.125rem}
+.contact-info-label{font-size:0.75rem;font-weight:600;color:var(--ink-60);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.25rem}
+.contact-info-value{font-size:0.9375rem;font-weight:500;color:var(--sage)}
+.contact-form{background:var(--white);border-radius:var(--radius-xl);padding:2.5rem;border:1px solid var(--ink-10)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:0.375rem;margin-bottom:1rem}
+.form-label{font-size:0.8125rem;font-weight:600;color:var(--ink-60);text-transform:uppercase;letter-spacing:0.05em}
+.form-input{padding:0.875rem 1.125rem;border:1.5px solid var(--ink-10);border-radius:var(--radius-md);font-size:0.9375rem;font-family:var(--font-body);outline:none;transition:all 0.2s;background:var(--cream)}
+.form-input:focus{border-color:var(--sage);background:var(--white)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%230F1C14' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.form-textarea{resize:vertical;min-height:120px}
+@media(max-width:1024px){.contact-grid{grid-template-columns:1fr;gap:2.5rem}}
+@media(max-width:640px){.form-row{grid-template-columns:1fr}}
+
+/* ===== AI ASSISTANT ===== */
+.ai-chip{position:fixed;bottom:2rem;right:2rem;z-index:50}
+.ai-chip-btn{display:flex;align-items:center;gap:0.75rem;background:var(--sage);color:var(--white);padding:0.875rem 1.375rem;border-radius:999px;font-size:0.9rem;font-weight:500;border:none;cursor:pointer;box-shadow:var(--shadow-md);transition:all 0.25s var(--ease-out)}
+.ai-chip-btn:hover{background:var(--sage-light);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.ai-chip-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.3)}}
+.ai-panel{position:fixed;bottom:6rem;right:2rem;width:360px;background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--ink-10);box-shadow:var(--shadow-lg);z-index:50;display:none;flex-direction:column;overflow:hidden;max-height:520px}
+.ai-panel.open{display:flex}
+.ai-panel-header{background:var(--sage);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.ai-panel-title{font-weight:600;color:var(--white);display:flex;align-items:center;gap:0.5rem}
+.ai-panel-close{background:rgba(255,255,255,0.2);border:none;color:var(--white);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
+.ai-panel-messages{flex:1;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:1rem}
+.ai-msg{max-width:85%;padding:0.75rem 1rem;border-radius:var(--radius-md);font-size:0.875rem;line-height:1.6}
+.ai-msg-bot{background:var(--sage-ghost);color:var(--ink);align-self:flex-start;border-radius:4px var(--radius-md) var(--radius-md) var(--radius-md)}
+.ai-msg-user{background:var(--sage);color:var(--white);align-self:flex-end;border-radius:var(--radius-md) 4px var(--radius-md) var(--radius-md)}
+.ai-input-row{padding:1rem;border-top:1px solid var(--ink-10);display:flex;gap:0.5rem}
+.ai-input{flex:1;border:1.5px solid var(--ink-10);border-radius:var(--radius-md);padding:0.625rem 0.875rem;font-size:0.875rem;font-family:var(--font-body);outline:none;transition:border-color 0.2s}
+.ai-input:focus{border-color:var(--sage)}
+.ai-send{background:var(--sage);color:var(--white);border:none;border-radius:var(--radius-md);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.875rem;flex-shrink:0}
+.ai-quick{display:flex;flex-wrap:wrap;gap:0.5rem;padding:0 1.25rem 1rem}
+.ai-quick-btn{background:var(--sage-ghost);color:var(--sage);font-size:0.75rem;font-weight:500;padding:0.375rem 0.75rem;border-radius:999px;border:none;cursor:pointer;transition:all 0.2s}
+.ai-quick-btn:hover{background:var(--sage);color:var(--white)}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--ink);color:rgba(255,255,255,0.65)}
+.footer-top{padding:5rem 0 3.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-logo-wrap{margin-bottom:1.5rem}
+.footer-logo-text{font-family:var(--font-display);font-size:1.5rem;color:var(--white)}
+.footer-logo-text span{color:var(--sage-pale)}
+.footer-tagline{font-size:0.9rem;opacity:0.5;margin-top:0.375rem;line-height:1.5;max-width:260px}
+.footer-social{display:flex;gap:0.75rem;margin-top:1.5rem}
+.footer-social-btn{width:36px;height:36px;background:rgba(255,255,255,0.08);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:0.875rem;transition:all 0.2s;color:rgba(255,255,255,0.6)}
+.footer-social-btn:hover{background:var(--sage);color:var(--white)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:3rem}
+.footer-col-title{font-weight:600;color:var(--white);font-size:0.875rem;margin-bottom:1.25rem}
+.footer-link{display:block;font-size:0.875rem;padding:0.3rem 0;opacity:0.55;transition:all 0.2s}
+.footer-link:hover{opacity:1;color:var(--sage-pale);padding-left:0.375rem}
+.footer-bottom{padding:2rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-bottom-left{font-size:0.8125rem;opacity:0.4}
+.footer-bottom-links{display:flex;gap:1.5rem}
+.footer-bottom-link{font-size:0.8125rem;opacity:0.4;transition:opacity 0.2s}
+.footer-bottom-link:hover{opacity:0.8}
+.footer-bottom-evolve{display:flex;align-items:center;gap:0.5rem;font-size:0.8125rem;opacity:0.4}
+.footer-evolve-badge{background:rgba(255,255,255,0.08);padding:0.3rem 0.75rem;border-radius:999px;font-size:0.75rem}
+.footer-lang{display:flex;align-items:center;gap:0.5rem}
+.footer-lang select{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:0.375rem 0.75rem;font-size:0.8125rem;outline:none;cursor:pointer}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:640px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;align-items:flex-start}}
+
+/* ===== PAGE SECTION LABELS ===== */
+.breadcrumb{display:flex;align-items:center;gap:0.5rem;font-size:0.8125rem;color:var(--ink-60);margin-bottom:2rem}
+.breadcrumb-sep{opacity:0.35}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-up{opacity:0;transform:translateY(28px);transition:all 0.7s var(--ease-out)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-in{opacity:0;transition:opacity 0.7s var(--ease-out)}
+.fade-in.visible{opacity:1}
+.stagger-1{transition-delay:0.1s}
+.stagger-2{transition-delay:0.2s}
+.stagger-3{transition-delay:0.3s}
+.stagger-4{transition-delay:0.4s}
+
+/* ===== ANNOUNCEMENT BAR ===== */
+.announcement-bar{background:var(--sage);color:var(--white);text-align:center;padding:0.625rem;font-size:0.8125rem;font-weight:500;position:relative;z-index:101}
+.announcement-bar a{text-decoration:underline;opacity:0.85}
+.announcement-bar-close{position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--white);cursor:pointer;opacity:0.7;font-size:1rem}
+
+/* ===== ECHOLIVING MAGAZINE STRIP ===== */
+.magazine-strip{background:var(--gold-pale);border:1px solid rgba(212,168,83,0.2);border-radius:var(--radius-xl);padding:2.5rem;display:flex;align-items:center;gap:3rem;margin-top:4rem}
+.magazine-strip-label{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.5rem}
+.magazine-strip-title{font-family:var(--font-display);font-size:1.5rem;color:var(--ink)}
+.magazine-strip-body{font-size:0.9rem;color:var(--ink-60);margin-top:0.5rem}
+.magazine-strip-covers{display:flex;gap:1rem;flex-shrink:0}
+.magazine-cover{width:72px;height:96px;border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow-md)}
+.magazine-cover-bg{width:100%;height:100%;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-light) 100%);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-style:italic;font-size:0.6rem;color:white;text-align:center;padding:0.5rem;line-height:1.3}
+@media(max-width:900px){.magazine-strip{flex-direction:column;align-items:flex-start}}
+
+/* ===== PAGE HEADER (inner pages) ===== */
+.page-header{background:var(--ink);padding:8rem 0 4rem;margin-bottom:0;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(45,106,79,0.35),transparent 60%)}
+.page-header-content{position:relative;z-index:2}
+.page-header-title{color:var(--white);margin-bottom:0.75rem}
+.page-header-sub{color:rgba(255,255,255,0.55);font-size:1.0625rem;max-width:560px;line-height:1.65}
+
+/* ===== ACTIVE NAV TAB ===== */
+.site-tab{display:none}
+.site-tab.active{display:block}
+
+/* ===== NAV VISIBLE OVERRIDE ===== */
+.nav-visible{background:rgba(250,248,244,0.95)!important;backdrop-filter:blur(20px)}
+.nav-visible .nav-wordmark,.nav-visible .nav-link,.nav-visible .nav-state-selector{color:var(--ink)!important}
+
+/* ===== MISC ===== */
+.divider{height:1px;background:var(--ink-10);margin-block:1rem}
+.tag{display:inline-block;padding:0.25rem 0.75rem;border-radius:999px;font-size:0.75rem;font-weight:600;letter-spacing:0.04em}
+.tag-sage{background:var(--sage-ghost);color:var(--sage)}
+.tag-gold{background:var(--gold-pale);color:#9A6B20}
+.sep{display:flex;align-items:center;gap:1rem;color:var(--ink-30);font-size:0.8rem;font-weight:500;margin-block:2rem}
+.sep::before,.sep::after{content:'';flex:1;height:1px;background:var(--ink-10)}
+.notice-box{background:var(--sage-ghost);border:1px solid var(--sage-pale);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;display:flex;gap:0.875rem;align-items:flex-start}
+.notice-icon{font-size:1.25rem;flex-shrink:0;margin-top:0.1rem}
+.notice-body{font-size:0.9rem;color:var(--ink-60);line-height:1.6}
+.notice-body strong{color:var(--sage);font-weight:600}
+
+/* Fake map placeholder */
+.map-placeholder{background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 50%,#a5d6a7 100%);border-radius:var(--radius-lg);height:420px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;color:var(--sage);position:relative;overflow:hidden}
+.map-placeholder::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(45,106,79,0.12) 1px,transparent 1px);background-size:32px 32px}
+.map-pin{font-size:2.5rem;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.map-label{font-size:0.9rem;font-weight:600;opacity:0.7}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--ink-10);border-radius:3px}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.animate-hero-1{animation:fadeSlideUp 0.9s 0.15s var(--ease-out) both}
+.animate-hero-2{animation:fadeSlideUp 0.9s 0.3s var(--ease-out) both}
+.animate-hero-3{animation:fadeSlideUp 0.9s 0.45s var(--ease-out) both}
+.animate-hero-4{animation:fadeSlideUp 0.9s 0.6s var(--ease-out) both}
+.animate-hero-5{animation:fadeSlideUp 0.9s 0.9s var(--ease-out) both}
+</style>
+</head>
+<body>
+
+<!-- ===== ANNOUNCEMENT BAR ===== -->
+<div class="announcement-bar" id="announcementBar">
+  🏠 Affordable Housing Month — Learn how EchoRealty is closing the housing gap in NSW, VIC & ACT.
+  <a href="#affordable-housing">Find out more →</a>
+  <button class="announcement-bar-close" onclick="document.getElementById('announcementBar').style.display='none'">✕</button>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <!-- Logo -->
+    <a href="#home" class="nav-logo-wrap" onclick="showTab('home')">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="8" fill="#2D6A4F"/>
+        <path d="M8 22L16 10L24 22" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M11 18H21" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+      </svg>
+      <span class="nav-wordmark">Echo<span>Realty</span></span>
+    </a>
+
+    <!-- State selector -->
+    <button class="nav-state-selector hide-mobile" onclick="toggleStateMenu(this)">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" opacity="0.5"><circle cx="6" cy="6" r="4"/></svg>
+      NSW
+      <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+
+    <!-- Links -->
+    <div class="nav-links">
+      <div class="has-dropdown">
+        <a class="nav-link" href="#">About Us</a>
+        <div class="dropdown">
+          <a href="#about" onclick="showTab('about')">Our Story</a>
+          <a href="#about" onclick="showTab('about')">Our Team</a>
+          <a href="#about" onclick="showTab('about')">Our Partners</a>
+          <a href="#about" onclick="showTab('about')">Awards & Accreditations</a>
+          <a href="#about" onclick="showTab('about')">News</a>
+          <a href="#about" onclick="showTab('about')">Careers</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a class="nav-link" href="#">Property Management</a>
+        <div class="dropdown">
+          <a href="#services" onclick="showTab('services')">Our Services</a>
+          <a href="#owner" onclick="showTab('owner')">Property Owner Portal</a>
+          <a href="#affordable-housing" onclick="showTab('affordable')">Affordable Housing Programs</a>
+          <a href="#testimonials" onclick="showTab('home')">Testimonials</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a class="nav-link" href="#">Properties</a>
+        <div class="dropdown">
+          <a href="#listings" onclick="showTab('listings')">Rental Listings</a>
+          <a href="#listings" onclick="showTab('listings')">Featured Properties</a>
+          <a href="#faq" onclick="showTab('faq')">FAQ</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a class="nav-link" href="#">Tenancy Info</a>
+        <div class="dropdown">
+          <a href="#tenant" onclick="showTab('tenant')">Tenancy Information</a>
+          <a href="#tenant" onclick="showTab('tenant')">Renting Information</a>
+          <a href="#tenant" onclick="showTab('tenant')">All About Repairs</a>
+          <a href="#community" onclick="showTab('community')">Community Programs</a>
+          <a href="#community" onclick="showTab('community')">EchoLIVING Magazine</a>
+          <a href="#faq" onclick="showTab('faq')">FAQ</a>
+        </div>
+      </div>
+      <div class="has-dropdown">
+        <a class="nav-link" href="#">Affordable Housing</a>
+        <div class="dropdown">
+          <a href="#affordable" onclick="showTab('affordable')">What is Affordable Housing?</a>
+          <a href="#affordable" onclick="showTab('affordable')">For Applicants</a>
+          <a href="#affordable" onclick="showTab('affordable')">For Developers</a>
+        </div>
+      </div>
+      <a class="nav-link" href="#contact" onclick="showTab('contact')">Contact</a>
+
+      <a href="https://client.propertytree.com/login" target="_blank" class="btn btn-primary btn-sm nav-cta">Tenant Portal ↗</a>
+    </div>
+
+    <!-- Mobile menu btn -->
+    <button class="btn btn-icon mobile-menu-btn" onclick="toggleMobileMenu()" style="border:1.5px solid var(--ink-10);border-radius:var(--radius-sm);width:44px;height:44px">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M0 1H18M0 6H18M0 11H18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span class="nav-wordmark" style="color:white">Echo<span style="color:var(--sage-pale)">Realty</span></span>
+    <button onclick="toggleMobileMenu()" style="background:rgba(255,255,255,0.1);border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:1.125rem;cursor:pointer">✕</button>
+  </div>
+  <a class="mobile-nav-link" href="#" onclick="showTab('home');toggleMobileMenu()">Home</a>
+  <a class="mobile-nav-link" href="#" onclick="showTab('listings');toggleMobileMenu()">Rental Properties</a>
+  <a class="mobile-nav-link" href="#" onclick="showTab('tenant');toggleMobileMenu()">Tenancy Information</a>
+  <a class="mobile-nav-link" href="#" onclick="showTab('owner');toggleMobileMenu()">Property Owners</a>
+  <a class="mobile-nav-link" href="#" onclick="showTab('affordable');toggleMobileMenu()">Affordable Housing</a>
+  <a class="mobile-nav-link" href="#" onclick="showTab('community');toggleMobileMenu()">Community</a>
+  <a class="mobile-nav-link" href="#" onclick="showTab('services');toggleMobileMenu()">Our Services</a>
+  <a class="mobile-nav-link" href="#" onclick="showTab('about');toggleMobileMenu()">About Us</a>
+  <a class="mobile-nav-link" href="#" onclick="showTab('contact');toggleMobileMenu()">Contact</a>
+  <div style="margin-top:2rem;display:flex;flex-direction:column;gap:0.875rem">
+    <a href="https://client.propertytree.com/login" target="_blank" class="btn btn-primary" style="justify-content:center">Tenant Portal ↗</a>
+    <a href="#" onclick="showTab('listings');toggleMobileMenu()" class="btn btn-ghost" style="justify-content:center">Browse Properties</a>
+  </div>
+  <div style="margin-top:2.5rem;display:flex;gap:0.75rem">
+    <span style="font-size:0.75rem;color:rgba(255,255,255,0.3)">State:</span>
+    <a href="#" style="font-size:0.75rem;color:var(--sage-pale);font-weight:600">NSW</a>
+    <a href="https://echorealty.com.au/vic" style="font-size:0.75rem;color:rgba(255,255,255,0.4)">VIC</a>
+    <a href="https://echorealty.com.au/act" style="font-size:0.75rem;color:rgba(255,255,255,0.4)">ACT</a>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE TABS -->
+<!-- ============================================================ -->
+
+<!-- ======= HOME PAGE ======= -->
+<div class="site-tab active" id="tab-home">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content container">
+      <div class="hero-inner">
+        <!-- Left -->
+        <div>
+          <div class="hero-eyebrow animate-hero-1">Profit-for-purpose · NSW · VIC · ACT</div>
+          <h1 class="display-xl hero-title animate-hero-2">
+            Housing that puts <em>people</em> first.
+          </h1>
+          <p class="hero-body animate-hero-3">
+            EchoRealty is Australia's affordable housing experts — connecting low to moderate income earners with quality homes, while generating real social impact.
+          </p>
+          <div class="hero-actions animate-hero-4">
+            <button class="btn btn-gold btn-lg" onclick="showTab('listings')">Browse Properties →</button>
+            <button class="btn btn-ghost" onclick="showTab('affordable')">What is Affordable Housing?</button>
+          </div>
+          <div class="hero-stats animate-hero-5">
+            <div>
+              <div class="hero-stat-num">2,400+</div>
+              <div class="hero-stat-label">Properties Managed</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">NSW #1</div>
+              <div class="hero-stat-label">Largest Portfolio</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">75 yrs</div>
+              <div class="hero-stat-label">Combined Expertise</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Search -->
+        <div class="animate-hero-3">
+          <div class="hero-search-card">
+            <div class="search-card-title">Find your next home</div>
+
+            <div class="form-group" style="margin-bottom:0.875rem">
+              <div class="search-label">Location or suburb</div>
+              <input class="search-input" type="text" placeholder="e.g. Parramatta, Western Sydney…">
+            </div>
+
+            <div class="search-grid" style="margin-top:0.875rem">
+              <div>
+                <div class="search-label">Property type</div>
+                <select class="search-select">
+                  <option>Any type</option>
+                  <option>Apartment</option>
+                  <option>Flat</option>
+                  <option>Studio</option>
+                  <option>Townhouse</option>
+                  <option>Unit</option>
+                </select>
+              </div>
+              <div>
+                <div class="search-label">Weekly budget</div>
+                <select class="search-select">
+                  <option>Any budget</option>
+                  <option>Under $200/wk</option>
+                  <option>$200–$350/wk</option>
+                  <option>$350–$500/wk</option>
+                  <option>$500+/wk</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="search-grid-4" style="margin-top:0.75rem">
+              <div>
+                <div class="search-label">Beds</div>
+                <select class="search-select">
+                  <option>Any</option>
+                  <option>1+</option>
+                  <option>2+</option>
+                  <option>3+</option>
+                </select>
+              </div>
+              <div>
+                <div class="search-label">Baths</div>
+                <select class="search-select">
+                  <option>Any</option>
+                  <option>1+</option>
+                  <option>2+</option>
+                </select>
+              </div>
+              <div>
+                <div class="search-label">Parking</div>
+                <select class="search-select">
+                  <option>Any</option>
+                  <option>1+</option>
+                  <option>2+</option>
+                </select>
+              </div>
+              <div>
+                <div class="search-label">State</div>
+                <select class="search-select">
+                  <option>NSW</option>
+                  <option>VIC</option>
+                  <option>ACT</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="search-btn" onclick="showTab('listings')">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="white" stroke-width="1.5"/><path d="M11 11L14 14" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Search Properties
+            </button>
+
+            <div style="text-align:center;margin-top:1rem">
+              <a href="#" onclick="showTab('listings')" style="font-size:0.8rem;color:rgba(255,255,255,0.45);text-decoration:underline;text-underline-offset:3px">View all available listings →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE PATHS -->
+  <section class="section-sm bg-cream">
+    <div class="container">
+      <div class="grid-3 fade-up">
+        <div class="audience-card audience-card-tenant" onclick="showTab('tenant')">
+          <div class="audience-icon">🏠</div>
+          <div class="audience-title">I'm a Tenant</div>
+          <p class="audience-body">Access your tenant portal, report repairs, find community support programs, and get all renting information you need.</p>
+          <div class="audience-link">Tenant Information →</div>
+        </div>
+        <div class="audience-card audience-card-owner" onclick="showTab('owner')">
+          <div class="audience-icon">🔑</div>
+          <div class="audience-title">I'm a Property Owner</div>
+          <p class="audience-body">Learn about our award-winning property management services and how we help owners achieve exceptional returns with social purpose.</p>
+          <div class="audience-link">Owner Information →</div>
+        </div>
+        <div class="audience-card audience-card-dev" onclick="showTab('affordable')">
+          <div class="audience-icon">🏗️</div>
+          <div class="audience-title">I'm a Developer</div>
+          <p class="audience-body">EchoRealty manages one of Australia's largest affordable housing portfolios. Let's discuss your development partnership.</p>
+          <div class="audience-link" style="color:var(--sage)">Developer Information →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section class="section bg-white" id="who-we-are">
+    <div class="container">
+      <div class="mission-split">
+        <div class="fade-up">
+          <div class="pill pill-sage pill-dot" style="margin-bottom:1.25rem">Our Mission</div>
+          <h2 class="display-lg">Doing property <em class="serif">differently.</em></h2>
+          <p class="mission-body">EchoRealty is part of the <strong>Evolve Housing group</strong> — one of Australia's leading not-for-profit Community Housing Providers. We manage the largest affordable housing portfolio in NSW, helping thousands of Australians secure safe, stable homes they can afford.</p>
+          <blockquote class="mission-highlight">"Our business model combines delivering high quality property management with the objective of creating positive social impact."</blockquote>
+          <p class="mission-body">We are a <strong>profit-for-purpose</strong> business. The revenue we generate goes back into improving services, expanding housing stock, and directly supporting tenants and communities.</p>
+          <div class="awards-strip">
+            <div class="award-badge"><span class="award-badge-icon">🏆</span> 2020 REB Awards</div>
+            <div class="award-badge"><span class="award-badge-icon">⭐</span> Award-Winning Service</div>
+            <div class="award-badge"><span class="award-badge-icon">🤝</span> Evolve Housing Group</div>
+          </div>
+          <div style="margin-top:2rem">
+            <button class="btn btn-primary" onclick="showTab('about')">Our Full Story →</button>
+          </div>
+        </div>
+        <div class="fade-up stagger-2">
+          <div class="mission-stats-grid">
+            <div class="mission-stat">
+              <div class="mission-stat-num">2,400+</div>
+              <div class="mission-stat-label">Properties managed across NSW, VIC & ACT</div>
+            </div>
+            <div class="mission-stat">
+              <div class="mission-stat-num">#1</div>
+              <div class="mission-stat-label">Largest affordable housing provider in NSW</div>
+            </div>
+            <div class="mission-stat">
+              <div class="mission-stat-num">75 yrs</div>
+              <div class="mission-stat-label">Combined property & real estate expertise</div>
+            </div>
+            <div class="mission-stat">
+              <div class="mission-stat-num">100%</div>
+              <div class="mission-stat-label">Profit reinvested for social purpose</div>
+            </div>
+          </div>
+          <div class="notice-box" style="margin-top:1.5rem">
+            <div class="notice-icon">💚</div>
+            <div class="notice-body"><strong>Profit-for-purpose</strong> means every service fee supports housing access for those who need it most — bridging the gap between social housing and the private market.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROPERTIES -->
+  <section class="section bg-cream" id="featured-properties">
+    <div class="container">
+      <div class="flex justify-between items-center section-header fade-up" style="flex-wrap:wrap;gap:1rem">
+        <div>
+          <div class="pill pill-sage pill-dot">Available Now</div>
+          <h2 class="display-lg" style="margin-top:0.75rem">Featured properties</h2>
+        </div>
+        <button class="btn btn-outline" onclick="showTab('listings')">View all listings →</button>
+      </div>
+      <div class="grid-3 fade-up">
+        <!-- Property 1 -->
+        <div class="property-card">
+          <div class="property-card-image">
+            <div class="prop-img-placeholder" style="background:linear-gradient(135deg,#2D6A4F,#40916C)">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" opacity="0.5"><path d="M8 40V20L24 8L40 20V40H30V28H18V40H8Z" stroke="white" stroke-width="2"/></svg>
+              <span>Parramatta, NSW</span>
+            </div>
+            <div class="property-badge"><span class="property-badge-affordable">Affordable</span></div>
+            <button class="property-save-btn" title="Save property">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14L2 8.5C2 6 3.5 4 6 4C7.1 4 8 4.8 8 4.8C8 4.8 8.9 4 10 4C12.5 4 14 6 14 8.5L8 14Z" stroke="#2D6A4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">$285 <span>/ week</span></div>
+            <div class="property-address">14 Station St, Parramatta NSW 2150</div>
+            <div class="property-meta">
+              <div class="property-meta-item">🛏 2 Beds</div>
+              <div class="property-meta-item">🚿 1 Bath</div>
+              <div class="property-meta-item">🚗 1 Parking</div>
+            </div>
+          </div>
+        </div>
+        <!-- Property 2 -->
+        <div class="property-card">
+          <div class="property-card-image">
+            <div class="prop-img-placeholder" style="background:linear-gradient(135deg,#1B3A2A,#2D6A4F)">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" opacity="0.5"><rect x="6" y="14" width="36" height="26" rx="2" stroke="white" stroke-width="2"/><path d="M6 20H42M14 14V8M34 14V8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>Blacktown, NSW</span>
+            </div>
+            <div class="property-badge"><span class="property-badge-affordable">Affordable</span></div>
+            <button class="property-save-btn" title="Save property">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14L2 8.5C2 6 3.5 4 6 4C7.1 4 8 4.8 8 4.8C8 4.8 8.9 4 10 4C12.5 4 14 6 14 8.5L8 14Z" stroke="#2D6A4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">$320 <span>/ week</span></div>
+            <div class="property-address">7/22 Richmond Rd, Blacktown NSW 2148</div>
+            <div class="property-meta">
+              <div class="property-meta-item">🛏 3 Beds</div>
+              <div class="property-meta-item">🚿 2 Bath</div>
+              <div class="property-meta-item">🚗 1 Parking</div>
+            </div>
+          </div>
+        </div>
+        <!-- Property 3 -->
+        <div class="property-card">
+          <div class="property-card-image">
+            <div class="prop-img-placeholder" style="background:linear-gradient(135deg,#40916C,#74C69D)">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" opacity="0.5"><path d="M6 40V24L24 10L42 24V40" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="20" y="28" width="8" height="12" stroke="white" stroke-width="2"/></svg>
+              <span>Penrith, NSW</span>
+            </div>
+            <div class="property-badge"><span class="property-badge-affordable">Affordable</span></div>
+            <button class="property-save-btn" title="Save property">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14L2 8.5C2 6 3.5 4 6 4C7.1 4 8 4.8 8 4.8C8 4.8 8.9 4 10 4C12.5 4 14 6 14 8.5L8 14Z" stroke="#2D6A4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">$245 <span>/ week</span></div>
+            <div class="property-address">3/45 Mulgoa Rd, Penrith NSW 2750</div>
+            <div class="property-meta">
+              <div class="property-meta-item">🛏 1 Bed</div>
+              <div class="property-meta-item">🚿 1 Bath</div>
+              <div class="property-meta-item">🚗 — </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Map view -->
+      <div class="map-placeholder fade-up" style="margin-top:2rem">
+        <div style="position:relative;z-index:2;text-align:center">
+          <div class="map-pin">📍</div>
+          <div class="map-label">Interactive map search — Explore properties by location</div>
+          <button class="btn btn-primary" style="margin-top:1rem" onclick="showTab('listings')">Open Map View</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials-bg" id="testimonials">
+    <div class="container">
+      <div class="flex justify-between items-center fade-up" style="margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem">
+        <div>
+          <div class="pill pill-white pill-dot">Real Stories</div>
+          <h2 class="display-lg color-white" style="margin-top:0.75rem">What our community says</h2>
+        </div>
+        <div class="testimonial-controls" id="testimonialDots">
+          <button class="t-dot active" onclick="scrollTestimonials(0)"></button>
+          <button class="t-dot" onclick="scrollTestimonials(1)"></button>
+          <button class="t-dot" onclick="scrollTestimonials(2)"></button>
+          <button class="t-dot" onclick="scrollTestimonials(3)"></button>
+        </div>
+      </div>
+      <div class="testimonial-track" id="testimonialTrack">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"Our property manager attends to our concerns in a respectful and timely manner. He is very professional leaving us feeling dignified and important."</blockquote>
+          <div class="testimonial-author-name">Jennifer</div>
+          <div class="testimonial-author-role">Tenant, Western Sydney</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"We will always be grateful for the opportunity of living in the EchoRealty property. It was a great experience — one we genuinely cherish."</blockquote>
+          <div class="testimonial-author-name">Daniel</div>
+          <div class="testimonial-author-role">Tenant, Parramatta</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"I am extremely happy I came across EchoRealty as I was struggling to afford a decent standard of living in Sydney. The property managers have been great to deal with — always responsive."</blockquote>
+          <div class="testimonial-author-name">Ramez</div>
+          <div class="testimonial-author-role">Tenant, Greater Sydney</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"We've received nothing but good service from the EchoRealty team. The staff are trustworthy and hardworking, they've made our property experience easy."</blockquote>
+          <div class="testimonial-author-name">Michael</div>
+          <div class="testimonial-author-role">Tenant, Blacktown</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"Working with EchoRealty has always been a great experience. Thank you to my property managers for being supportive. This has been the best agent/tenant experience I have had."</blockquote>
+          <div class="testimonial-author-name">Deb</div>
+          <div class="testimonial-author-role">Long-term Tenant</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"We've worked with EchoRealty for 3 years and have had a great experience. They thoroughly check their tenants to make sure that as a landlord I'm getting the best result for my property."</blockquote>
+          <div class="testimonial-author-name">Paul</div>
+          <div class="testimonial-author-role">Landlord</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"Excellent service, appreciate the fast application process and all the assistance our property manager provided throughout the stress free process."</blockquote>
+          <div class="testimonial-author-name">Neelab</div>
+          <div class="testimonial-author-role">Tenant</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMITMENT / TEAM -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="text-center fade-up section-header">
+        <div class="pill pill-sage pill-dot">Our People</div>
+        <h2 class="display-lg" style="margin-top:0.75rem">Committed to excellence</h2>
+      </div>
+      <div class="commitment-cards fade-up">
+        <div class="commitment-card" onclick="showTab('about')">
+          <div class="commitment-card-num">01</div>
+          <div class="commitment-card-title">Our Commitment</div>
+          <p class="commitment-card-body">We do more than simply provide accommodation. Our vision is to create thriving communities for all people and supply fit-for-purpose housing to match the diverse needs of Australian households.</p>
+        </div>
+        <div class="commitment-card" onclick="showTab('about')">
+          <div class="commitment-card-num">02</div>
+          <div class="commitment-card-title">Meet our Board</div>
+          <p class="commitment-card-body">Our skills-based Board and Executive teams bring a wealth of industry expertise. They provide sound ethical, legal governance and financial management to create a sustainable, impactful organisation.</p>
+        </div>
+        <div class="commitment-card" onclick="showTab('about')">
+          <div class="commitment-card-num">03</div>
+          <div class="commitment-card-title">Meet our Team</div>
+          <p class="commitment-card-body">The EchoRealty team has a combined 75 years of property and real estate experience, specialised in the affordable housing industry. There is no other choice — EchoRealty are the experts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="section-sm bg-cream">
+    <div class="container">
+      <div class="text-center fade-up" style="margin-bottom:2rem">
+        <div class="pill pill-sage">Our Partners</div>
+      </div>
+      <div class="partners-strip fade-up">
+        <!-- Partners represented as styled text -->
+        <div style="font-family:var(--font-display);font-size:1.375rem;opacity:0.35;letter-spacing:-0.02em">Barings</div>
+        <div style="font-family:var(--font-body);font-size:0.9rem;font-weight:600;opacity:0.35;letter-spacing:0.04em;text-transform:uppercase">City of Parramatta</div>
+        <div style="font-family:var(--font-body);font-size:0.9rem;font-weight:600;opacity:0.35;letter-spacing:0.04em;text-transform:uppercase">Willoughby City</div>
+        <div style="font-family:var(--font-body);font-size:0.9rem;font-weight:600;opacity:0.35;letter-spacing:0.04em;text-transform:uppercase">Evolve Housing</div>
+        <div style="font-family:var(--font-body);font-size:0.9rem;font-weight:600;opacity:0.35;letter-spacing:0.04em;text-transform:uppercase">NSW Government</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section style="background:var(--sage);padding:5rem 0">
+    <div class="container text-center fade-up">
+      <h2 class="display-lg color-white" style="margin-bottom:1rem">Ready to find your home?</h2>
+      <p style="color:rgba(255,255,255,0.68);font-size:1.125rem;margin-bottom:2.5rem;max-width:520px;margin-inline:auto">Learn how affordable housing can benefit you. Our consultants are ready to help.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-gold btn-lg" onclick="showTab('contact')">Contact Us Today</button>
+        <button class="btn btn-ghost" onclick="showTab('listings')">Browse Properties</button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /HOME -->
+
+<!-- ======= LISTINGS PAGE ======= -->
+<div class="site-tab" id="tab-listings" style="padding-top:var(--nav-h)">
+  <div class="page-header">
+    <div class="container page-header-content">
+      <div class="pill pill-white pill-dot" style="margin-bottom:1rem">Properties</div>
+      <h1 class="display-lg page-header-title">Rental Properties</h1>
+      <p class="page-header-sub">Browse our current portfolio of affordable rental properties across NSW, VIC & ACT.</p>
+    </div>
+  </div>
+
+  <section class="section bg-cream">
+    <div class="container">
+      <!-- Search bar -->
+      <div style="background:var(--white);border:1px solid var(--ink-10);border-radius:var(--radius-xl);padding:1.75rem;margin-bottom:2.5rem;box-shadow:var(--shadow-sm)">
+        <div style="display:grid;grid-template-columns:3fr 1fr 1fr 1fr 1fr auto;gap:0.875rem;align-items:end;flex-wrap:wrap">
+          <div>
+            <div class="form-label" style="margin-bottom:0.375rem">Location</div>
+            <input class="form-input" type="text" placeholder="Suburb or postcode…" style="background:var(--cream)">
+          </div>
+          <div>
+            <div class="form-label" style="margin-bottom:0.375rem">Type</div>
+            <select class="form-input form-select" style="background:var(--cream)">
+              <option>Any type</option>
+              <option>Apartment</option>
+              <option>Townhouse</option>
+              <option>Unit</option>
+              <option>Studio</option>
+              <option>Flat</option>
+            </select>
+          </div>
+          <div>
+            <div class="form-label" style="margin-bottom:0.375rem">Bedrooms</div>
+            <select class="form-input form-select" style="background:var(--cream)">
+              <option>Any</option>
+              <option>1+</option>
+              <option>2+</option>
+              <option>3+</option>
+              <option>4+</option>
+            </select>
+          </div>
+          <div>
+            <div class="form-label" style="margin-bottom:0.375rem">Budget /wk</div>
+            <select class="form-input form-select" style="background:var(--cream)">
+              <option>Any</option>
+              <option>Under $200</option>
+              <option>$200–$350</option>
+              <option>$350–$500</option>
+            </select>
+          </div>
+          <div>
+            <div class="form-label" style="margin-bottom:0.375rem">State</div>
+            <select class="form-input form-select" style="background:var(--cream)">
+              <option>All</option>
+              <option>NSW</option>
+              <option>VIC</option>
+              <option>ACT</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="white-space:nowrap;height:48px">Search</button>
+        </div>
+      </div>
+
+      <!-- Map + grid toggle -->
+      <div class="flex justify-between items-center" style="margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+        <div style="font-size:0.9rem;color:var(--ink-60)"><strong style="color:var(--ink)">24 properties</strong> found</div>
+        <div style="display:flex;gap:0.5rem">
+          <button class="btn btn-sm btn-outline">🗺 Map View</button>
+          <button class="btn btn-sm btn-primary">⊞ Grid View</button>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <!-- 6 property cards -->
+        <div class="property-card">
+          <div class="property-card-image">
+            <div class="prop-img-placeholder" style="background:linear-gradient(135deg,#2D6A4F,#40916C)">
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" opacity="0.5"><path d="M8 40V20L24 8L40 20V40H30V28H18V40H8Z" stroke="white" stroke-width="2"/></svg>
+              <span>Parramatta NSW</span>
+            </div>
+            <div class="property-badge"><span class="property-badge-affordable">Affordable</span></div>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">$285 <span>/ week</span></div>
+            <div class="property-address">14 Station St, Parramatta NSW 2150</div>
+            <div class="property-meta">
+              <div class="property-meta-item">🛏 2 Beds</div>
+              <div class="property-meta-item">🚿 1 Bath</div>
+              <div class="property-meta-item">🚗 1 Car</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-card-image">
+            <div class="prop-img-placeholder" style="background:linear-gradient(135deg,#1B3A2A,#2D6A4F)">
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" opacity="0.5"><rect x="6" y="14" width="36" height="26" rx="2" stroke="white" stroke-width="2"/></svg>
+              <span>Blacktown NSW</span>
+            </div>
+            <div class="property-badge"><span class="property-badge-affordable">Affordable</span></div>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">$320 <span>/ week</span></div>
+            <div class="property-address">7/22 Richmond Rd, Blacktown NSW</div>
+            <div class="property-meta">
+              <div class="property-meta-item">🛏 3 Beds</div>
+              <div class="property-meta-item">🚿 2 Bath</div>
+              <div class="property-meta-item">🚗 1 Car</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-card-image">
+            <div class="prop-img-placeholder" style="background:linear-gradient(135deg,#40916C,#74C69D)">
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" opacity="0.5"><path d="M6 40V24L24 10L42 24V40" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>Penrith NSW</span>
+            </div>
+            <div class="property-badge"><span class="property-badge-affordable">Affordable</span></div>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">$245 <span>/ week</span></div>
+            <div class="property-address">3/45 Mulgoa Rd, Penrith NSW 2750</div>
+            <div class="property-meta">
+              <div class="property-meta-item">🛏 1 Bed</div>
+              <div class="property-meta-item">🚿 1 Bath</div>
+              <div class="property-meta-item">🚗 —</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-card-image">
+            <div class="prop-img-placeholder" style="background:linear-gradient(135deg,#0F1C14,#1B3A2A)">
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" opacity="0.5"><rect x="8" y="8" width="32" height="32" rx="4" stroke="white" stroke-width="2"/></svg>
+              <span>Westmead NSW</span>
+            </div>
+            <div class="property-badge"><span class="property-badge-affordable">Affordable</span></div>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">$295 <span>/ week</span></div>
+            <div class="property-address">12/3 Hawkesbury Rd, Westmead NSW</div>
+            <div class="property-meta">
+              <div class="property-meta-item">🛏 2 Beds</div>
+              <div class="property-meta-item">🚿 2 Bath</div>
+              <div class="property-meta-item">🚗 1 Car</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-card-image">
+            <div class="prop-img-placeholder" style="background:linear-gradient(135deg,#2D6A4F,#0F1C14)">
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" opacity="0.5"><path d="M8 40V18L24 6L40 18V40" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>Liverpool NSW</span>
+            </div>
+            <div class="property-badge"><span class="property-badge-affordable">Affordable</span></div>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">$310 <span>/ week</span></div>
+            <div class="property-address">5/88 Moore St, Liverpool NSW 2170</div>
+            <div class="property-meta">
+              <div class="property-meta-item">🛏 3 Beds</div>
+              <div class="property-meta-item">🚿 1 Bath</div>
+              <div class="property-meta-item">🚗 2 Cars</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-card-image">
+            <div class="prop-img-placeholder" style="background:linear-gradient(135deg,#40916C,#2D6A4F)">
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" opacity="0.5"><circle cx="24" cy="24" r="16" stroke="white" stroke-width="2"/></svg>
+              <span>Ryde NSW</span>
+            </div>
+            <div class="property-badge"><span class="property-badge-affordable">Affordable</span></div>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">$340 <span>/ week</span></div>
+            <div class="property-address">2/15 Devlin St, Ryde NSW 2112</div>
+            <div class="property-meta">
+              <div class="property-meta-item">🛏 2 Beds</div>
+              <div class="property-meta-item">🚿 1 Bath</div>
+              <div class="property-meta-item">🚗 1 Car</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:3rem">
+        <button class="btn btn-outline btn-lg">Load more properties</button>
+      </div>
+
+      <div class="notice-box" style="margin-top:3rem">
+        <div class="notice-icon">ℹ️</div>
+        <div class="notice-body"><strong>About our listings:</strong> All properties are subject to eligibility for Affordable Housing — applicants must meet income thresholds. Contact us to discuss your eligibility or to start your application. <a href="#" onclick="showTab('affordable')" style="color:var(--sage);font-weight:600">Learn about affordable housing →</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= TENANT PAGE ======= -->
+<div class="site-tab" id="tab-tenant" style="padding-top:var(--nav-h)">
+  <div class="page-header">
+    <div class="container page-header-content">
+      <div class="pill pill-white pill-dot" style="margin-bottom:1rem">Tenants</div>
+      <h1 class="display-lg page-header-title">Tenancy Information</h1>
+      <p class="page-header-sub">Everything you need as an EchoRealty tenant — portal access, repairs, support and more.</p>
+    </div>
+  </div>
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="portal-split">
+        <div class="portal-card portal-card-tenant">
+          <div class="portal-bg-num">🏠</div>
+          <div class="pill pill-sage pill-dot" style="margin-bottom:1rem">Tenant Portal</div>
+          <div class="portal-card-title">Access your portal</div>
+          <p class="portal-card-body">Your online portal lets you manage your tenancy 24/7 — from anywhere.</p>
+          <ul class="portal-feature-list">
+            <li class="portal-feature">View and pay rent online</li>
+            <li class="portal-feature">Submit maintenance requests</li>
+            <li class="portal-feature">Access tenancy documents</li>
+            <li class="portal-feature">View your rental history</li>
+            <li class="portal-feature">Update personal details</li>
+          </ul>
+          <a href="https://client.propertytree.com/login" target="_blank" class="btn btn-primary btn-lg">Login to Tenant Portal ↗</a>
+        </div>
+        <div class="portal-card portal-card-owner">
+          <div class="portal-bg-num" style="font-size:6rem;bottom:-0.5rem;right:0.5rem">🔧</div>
+          <div class="pill pill-white pill-dot" style="margin-bottom:1rem">Maintenance</div>
+          <div class="portal-card-title">Report a repair</div>
+          <p class="portal-card-body">We take maintenance seriously. Here's how to report an issue fast.</p>
+          <ul class="portal-feature-list">
+            <li class="portal-feature">Log urgent repairs 24/7</li>
+            <li class="portal-feature">Track repair status online</li>
+            <li class="portal-feature">Direct tradesperson contact</li>
+            <li class="portal-feature">After-hours emergency line</li>
+          </ul>
+          <a href="https://client.propertytree.com/login" target="_blank" class="btn btn-ghost btn-lg">Log a Repair ↗</a>
+        </div>
+      </div>
+
+      <!-- Renting info grid -->
+      <div style="margin-top:3.5rem">
+        <h2 class="display-md" style="margin-bottom:2rem">Renting with EchoRealty</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><span>📋</span></div>
+            <div class="service-title">Renting Information</div>
+            <p class="service-body">Understand your rights and responsibilities as a tenant, what to expect when renting, and how we support you throughout your tenancy.</p>
+            <a href="#" class="btn btn-outline btn-sm" style="margin-top:1rem">Read More →</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><span>🔧</span></div>
+            <div class="service-title">All About Repairs</div>
+            <p class="service-body">From routine maintenance to urgent emergencies — learn how to report repairs, response timeframes, and what happens after you lodge a request.</p>
+            <a href="#" class="btn btn-outline btn-sm" style="margin-top:1rem">Read More →</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><span>📰</span></div>
+            <div class="service-title">EchoLIVING Magazine</div>
+            <p class="service-body">Our community magazine — packed with news, tenant stories, tips for living, community events, and updates from the EchoRealty team.</p>
+            <a href="#" onclick="showTab('community')" class="btn btn-outline btn-sm" style="margin-top:1rem">Read Issues →</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><span>🤝</span></div>
+            <div class="service-title">Support Programs</div>
+            <p class="service-body">We offer a range of tenant support programs to help you thrive — financial literacy, community engagement, referrals and more.</p>
+            <a href="#" onclick="showTab('community')" class="btn btn-outline btn-sm" style="margin-top:1rem">Explore Programs →</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><span>❓</span></div>
+            <div class="service-title">FAQ</div>
+            <p class="service-body">Quick answers to the most commonly asked tenancy questions — from bond payments to ending a lease and everything in between.</p>
+            <a href="#" onclick="showTab('faq')" class="btn btn-outline btn-sm" style="margin-top:1rem">View FAQs →</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><span>📞</span></div>
+            <div class="service-title">Contact Your Manager</div>
+            <p class="service-body">Can't find what you need? Our property managers are ready to help. Reach out directly — we're committed to responsive, respectful service.</p>
+            <a href="#" onclick="showTab('contact')" class="btn btn-outline btn-sm" style="margin-top:1rem">Get in Touch →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= OWNER PAGE ======= -->
+<div class="site-tab" id="tab-owner" style="padding-top:var(--nav-h)">
+  <div class="page-header">
+    <div class="container page-header-content">
+      <div class="pill pill-white pill-dot" style="margin-bottom:1rem">Property Owners</div>
+      <h1 class="display-lg page-header-title">Property Owner Portal</h1>
+      <p class="page-header-sub">Award-winning property management with real social impact. We make ownership effortless.</p>
+    </div>
+  </div>
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="mission-split">
+        <div>
+          <h2 class="display-md" style="margin-bottom:1.5rem">Why choose EchoRealty for your investment?</h2>
+          <p style="color:var(--ink-60);font-size:1.0625rem;line-height:1.75;margin-bottom:1.75rem">As a property owner with EchoRealty, you're not just getting a property manager — you're joining a movement. We manage your investment with the highest professional standards while ensuring your property contributes to housing affordability in Australia.</p>
+          <div class="mission-stats-grid" style="margin-bottom:2rem">
+            <div class="mission-stat">
+              <div class="mission-stat-num">99.2%</div>
+              <div class="mission-stat-label">Rent collected on time</div>
+            </div>
+            <div class="mission-stat">
+              <div class="mission-stat-num">3+ yrs</div>
+              <div class="mission-stat-label">Average tenancy length</div>
+            </div>
+            <div class="mission-stat">
+              <div class="mission-stat-num">24/7</div>
+              <div class="mission-stat-label">Maintenance response</div>
+            </div>
+            <div class="mission-stat">
+              <div class="mission-stat-num">0</div>
+              <div class="mission-stat-label">Vacancies in managed programs</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="https://client.propertytree.com/" target="_blank" class="btn btn-primary btn-lg">Owner Portal Login ↗</a>
+            <button class="btn btn-outline btn-lg" onclick="showTab('contact')">Request an Appraisal</button>
+          </div>
+        </div>
+        <div>
+          <div style="background:var(--white);border-radius:var(--radius-xl);padding:2.5rem;border:1px solid var(--ink-10)">
+            <h3 class="display-sm" style="margin-bottom:1.5rem">Our programs for owners</h3>
+            <div style="display:flex;flex-direction:column;gap:1rem">
+              <div style="padding:1.25rem;background:var(--sage-ghost);border-radius:var(--radius-lg)">
+                <div style="font-weight:600;color:var(--sage);margin-bottom:0.375rem">Affordable Housing Leasing</div>
+                <p style="font-size:0.875rem;color:var(--ink-60)">Guaranteed rent, no vacancy periods, full management — and your property helps house Australians who need it most.</p>
+              </div>
+              <div style="padding:1.25rem;background:var(--sage-ghost);border-radius:var(--radius-lg)">
+                <div style="font-weight:600;color:var(--sage);margin-bottom:0.375rem">Standard Property Management</div>
+                <p style="font-size:0.875rem;color:var(--ink-60)">Premium management with vetted tenants, routine inspections, maintenance coordination and detailed reporting.</p>
+              </div>
+              <div style="padding:1.25rem;background:var(--gold-pale);border-radius:var(--radius-lg)">
+                <div style="font-weight:600;color:#9A6B20;margin-bottom:0.375rem">Head Leasing Program</div>
+                <p style="font-size:0.875rem;color:var(--ink-60)">EchoRealty becomes your tenant — guaranteed income, zero hassle, and maximum social impact from your property.</p>
+              </div>
+            </div>
+            <a href="#" onclick="showTab('affordable')" style="display:inline-block;margin-top:1.25rem;font-size:0.875rem;color:var(--sage);font-weight:600">Explore all programs →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= AFFORDABLE HOUSING ======= -->
+<div class="site-tab" id="tab-affordable" style="padding-top:var(--nav-h)">
+  <div class="page-header">
+    <div class="container page-header-content">
+      <div class="pill pill-white pill-dot" style="margin-bottom:1rem">Affordable Housing</div>
+      <h1 class="display-lg page-header-title">Bridging the housing gap</h1>
+      <p class="page-header-sub">Affordable housing offers secure, quality homes for low to moderate income earners — filling the gap between social housing and the private market.</p>
+    </div>
+  </div>
+  <section class="section bg-white" id="affordable-housing">
+    <div class="container">
+      <div class="ah-split">
+        <div>
+          <div class="pill pill-sage pill-dot" style="margin-bottom:1.25rem">What is Affordable Housing?</div>
+          <h2 class="display-md" style="margin-bottom:1.25rem">A home you can <em class="serif">actually afford.</em></h2>
+          <p style="color:var(--ink-60);font-size:1.0625rem;line-height:1.75;margin-bottom:1.75rem">Affordable Housing is priced so that residents can afford other essential living costs including food, clothing, transport, medical care and education — not just rent.</p>
+          <div class="ah-gap-visual">
+            <div style="font-size:0.8125rem;color:var(--ink-60);white-space:nowrap">The gap</div>
+            <div style="flex:1">
+              <div style="display:flex;height:32px;border-radius:8px;overflow:hidden">
+                <div style="background:#E8F4F9;flex:2;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:600;color:#185FA5">Social Housing</div>
+                <div style="background:var(--sage-ghost);flex:1;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:600;color:var(--sage);border-left:2px solid white;border-right:2px solid white">Affordable 🏠</div>
+                <div style="background:#FCF5EC;flex:3;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:600;color:#9A6B20">Private Market</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--ink-60);margin-top:0.375rem">
+                <span>Lowest income</span><span>Market rate</span>
+              </div>
+            </div>
+          </div>
+          <div class="ah-accordion" style="margin-top:2rem">
+            <div class="ah-accordion-item">
+              <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">
+                Who is eligible for affordable housing?
+                <span class="ah-accordion-icon">+</span>
+              </button>
+              <div class="ah-accordion-body">
+                <div class="ah-accordion-body-inner">Affordable housing is available to low to moderate income earners who earn too much to qualify for social housing but struggle to afford private rental market prices. Income thresholds vary by household size and location. Contact us for a full eligibility assessment.</div>
+              </div>
+            </div>
+            <div class="ah-accordion-item">
+              <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">
+                How is rent calculated?
+                <span class="ah-accordion-icon">+</span>
+              </button>
+              <div class="ah-accordion-body">
+                <div class="ah-accordion-body-inner">Rent for affordable housing properties is typically set at 25–30% of a household's gross income, ensuring it remains genuinely affordable. Our team works with each tenant to confirm their eligibility and appropriate rent level.</div>
+              </div>
+            </div>
+            <div class="ah-accordion-item">
+              <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">
+                What areas do you operate in?
+                <span class="ah-accordion-icon">+</span>
+              </button>
+              <div class="ah-accordion-body">
+                <div class="ah-accordion-body-inner">EchoRealty manages properties across New South Wales (NSW), Victoria (VIC), and the Australian Capital Territory (ACT). Our largest portfolio is in Greater Sydney, NSW, where we are the largest affordable housing provider.</div>
+              </div>
+            </div>
+            <div class="ah-accordion-item">
+              <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">
+                How do I apply for a property?
+                <span class="ah-accordion-icon">+</span>
+              </button>
+              <div class="ah-accordion-body">
+                <div class="ah-accordion-body-inner">To apply, first check our available listings and confirm you meet the eligibility criteria. Then contact our team to start your application. We'll guide you through the full process — from income verification to inspection and lease signing.</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="showTab('contact')">Talk to Our Team</button>
+            <button class="btn btn-outline" onclick="showTab('listings')">Browse Available Homes</button>
+          </div>
+        </div>
+        <div class="ah-visual">
+          <div class="ah-big-stat">
+            <div class="ah-big-stat-num">NSW #1</div>
+            <div class="ah-big-stat-label">Largest Affordable Housing Portfolio in New South Wales</div>
+          </div>
+          <div class="ah-floating-card ah-floating-card-1">
+            <div class="ah-floating-num">2,400+</div>
+            <div class="ah-floating-text">Properties under management</div>
+          </div>
+          <div class="ah-floating-card ah-floating-card-2">
+            <div class="ah-floating-num">💚 100%</div>
+            <div class="ah-floating-text">Profit reinvested for impact</div>
+          </div>
+          <div style="margin-top:2rem">
+            <div style="background:var(--sage-ghost);border-radius:var(--radius-lg);padding:1.75rem">
+              <div style="font-weight:600;margin-bottom:1.25rem;font-size:1.0625rem">For Developers</div>
+              <p style="font-size:0.9rem;color:var(--ink-60);line-height:1.65;margin-bottom:1.25rem">If you're a property developer wanting to build or include affordable housing, EchoRealty can partner with you. We manage one of the largest affordable housing portfolios in Australia and bring deep expertise to every development.</p>
+              <button class="btn btn-primary btn-sm" onclick="showTab('contact')">Developer Enquiry →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= COMMUNITY PAGE ======= -->
+<div class="site-tab" id="tab-community" style="padding-top:var(--nav-h)">
+  <div class="page-header">
+    <div class="container page-header-content">
+      <div class="pill pill-white pill-dot" style="margin-bottom:1rem">Community</div>
+      <h1 class="display-lg page-header-title">Our Community Programs</h1>
+      <p class="page-header-sub">More than housing — we build thriving communities through support, education, and connection.</p>
+    </div>
+  </div>
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="program-cards">
+        <div class="program-card">
+          <div class="program-card-icon">💰</div>
+          <div>
+            <div class="program-card-title">Financial Literacy Program</div>
+            <p class="program-card-body">Workshops and one-on-one sessions to help tenants manage budgets, reduce debt, and build financial confidence for long-term stability.</p>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card-icon">🤝</div>
+          <div>
+            <div class="program-card-title">Community Engagement Events</div>
+            <p class="program-card-body">Regular events including community BBQs, multicultural celebrations, skill shares, and neighbourhood gatherings that bring residents together.</p>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card-icon">📚</div>
+          <div>
+            <div class="program-card-title">Education Support</div>
+            <p class="program-card-body">Connecting tenants with educational pathways, scholarships, adult learning programs, and employment opportunities in the local area.</p>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card-icon">🏥</div>
+          <div>
+            <div class="program-card-title">Health & Wellbeing Referrals</div>
+            <p class="program-card-body">Facilitating access to mental health services, community health nurses, domestic violence support, and other vital wellbeing resources.</p>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card-icon">🌱</div>
+          <div>
+            <div class="program-card-title">Garden & Environment Programs</div>
+            <p class="program-card-body">Community garden initiatives, sustainability workshops, and green space activation to build pride of place and environmental awareness.</p>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card-icon">👶</div>
+          <div>
+            <div class="program-card-title">Family & Youth Support</div>
+            <p class="program-card-body">Programs specifically designed for families with children and young people, including holiday activities, tutoring programs, and parenting support.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="magazine-strip">
+        <div style="flex:1">
+          <div class="magazine-strip-label">EchoLIVING</div>
+          <div class="magazine-strip-title">Our Community Magazine</div>
+          <p class="magazine-strip-body">Tenant stories, community news, property tips, event coverage, local resources and more — published quarterly for our EchoRealty community.</p>
+          <button class="btn btn-primary" style="margin-top:1.25rem">Read Latest Issue →</button>
+        </div>
+        <div class="magazine-strip-covers">
+          <div class="magazine-cover"><div class="magazine-cover-bg">Echo LIVING Summer 2024</div></div>
+          <div class="magazine-cover"><div class="magazine-cover-bg" style="background:linear-gradient(135deg,#1B3A2A,#2D6A4F)">Echo LIVING Autumn 2024</div></div>
+          <div class="magazine-cover"><div class="magazine-cover-bg" style="background:linear-gradient(135deg,#9A6B20,#D4A853)">Echo LIVING Winter 2024</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= SERVICES PAGE ======= -->
+<div class="site-tab" id="tab-services" style="padding-top:var(--nav-h)">
+  <div class="page-header">
+    <div class="container page-header-content">
+      <div class="pill pill-white pill-dot" style="margin-bottom:1rem">Services</div>
+      <h1 class="display-lg page-header-title">Our Services</h1>
+      <p class="page-header-sub">A full suite of property management services designed for affordable housing excellence.</p>
+    </div>
+  </div>
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><span>🏠</span></div>
+          <div class="service-title">Property Management</div>
+          <p class="service-body">End-to-end management of your investment property — tenant sourcing, rent collection, maintenance, inspections, and detailed monthly reporting.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><span>📊</span></div>
+          <div class="service-title">Property Appraisals</div>
+          <p class="service-body">Free, no-obligation property appraisals by our expert team. Understand your property's potential for affordable housing programs.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><span>🔍</span></div>
+          <div class="service-title">Tenant Sourcing & Vetting</div>
+          <p class="service-body">Thorough tenant screening including income verification, reference checks, and affordability assessments to find the right match for your property.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><span>🔧</span></div>
+          <div class="service-title">Maintenance Coordination</div>
+          <p class="service-body">24/7 maintenance request management, a trusted network of qualified tradespeople, and proactive property care to protect your investment.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><span>📋</span></div>
+          <div class="service-title">Affordable Housing Programs</div>
+          <p class="service-body">Comprehensive affordable housing program management — from NRAS to social housing leasing, head leasing, and community housing partnerships.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><span>💼</span></div>
+          <div class="service-title">Owner Reporting & Portal</div>
+          <p class="service-body">Real-time access to your property performance via our owner portal — financial statements, inspection reports, maintenance updates, and more.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><span>⚖️</span></div>
+          <div class="service-title">Compliance & Legislation</div>
+          <p class="service-body">We keep your property compliant with all relevant tenancy legislation in NSW, VIC, and ACT — so you never have to worry about the legal landscape.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><span>🌐</span></div>
+          <div class="service-title">Developer Partnerships</div>
+          <p class="service-body">Advisory and management services for developers incorporating affordable housing into their projects — from planning to leasing and long-term management.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><span>💚</span></div>
+          <div class="service-title">Social Impact Reporting</div>
+          <p class="service-body">Unique to EchoRealty — comprehensive social impact reporting showing the real-world difference your property investment makes in the community.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:3.5rem">
+        <button class="btn btn-primary btn-lg" onclick="showTab('contact')">Request a Free Appraisal →</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= ABOUT PAGE ======= -->
+<div class="site-tab" id="tab-about" style="padding-top:var(--nav-h)">
+  <div class="page-header">
+    <div class="container page-header-content">
+      <div class="pill pill-white pill-dot" style="margin-bottom:1rem">About</div>
+      <h1 class="display-lg page-header-title">Our Story</h1>
+      <p class="page-header-sub">A profit-for-purpose real estate company on a mission to make quality housing accessible for all Australians.</p>
+    </div>
+  </div>
+  <section class="section bg-white">
+    <div class="container">
+      <div class="mission-split">
+        <div>
+          <div class="pill pill-sage pill-dot" style="margin-bottom:1.25rem">Who we are</div>
+          <h2 class="display-md" style="margin-bottom:1.25rem">Leaders in affordable housing property management</h2>
+          <p style="color:var(--ink-60);font-size:1.0625rem;line-height:1.75;margin-bottom:1.5rem">EchoRealty is part of the <strong>Evolve Housing group of companies</strong>, which includes one of Australia's leading not-for-profit Community Housing Providers (CHPs). Together, we manage the largest portfolio of affordable housing in NSW.</p>
+          <p style="color:var(--ink-60);font-size:1.0625rem;line-height:1.75;margin-bottom:1.5rem">Our business model is simple but powerful: combine <strong>high quality property management</strong> with the objective of creating <strong>positive social impact</strong>. The revenue we generate funds community programs, expands housing access, and supports vulnerable Australians.</p>
+          <p style="color:var(--ink-60);font-size:1.0625rem;line-height:1.75;margin-bottom:2rem">EchoRealty is an <strong>award-winning business</strong> recognised across the not-for-profit, community housing, and real estate industries. Our most recent recognition: the 2020 Real Estate Business Awards for ethical and socially responsible business practice.</p>
+          <div class="awards-strip">
+            <div class="award-badge"><span class="award-badge-icon">🏆</span> 2020 REB Awards — Social Impact</div>
+            <div class="award-badge"><span class="award-badge-icon">⭐</span> Industry Leader, Affordable Housing</div>
+          </div>
+        </div>
+        <div>
+          <div class="mission-stats-grid">
+            <div class="mission-stat">
+              <div class="mission-stat-num">75 yrs</div>
+              <div class="mission-stat-label">Combined team expertise in property & real estate</div>
+            </div>
+            <div class="mission-stat">
+              <div class="mission-stat-num">3</div>
+              <div class="mission-stat-label">States — NSW, VIC and ACT</div>
+            </div>
+            <div class="mission-stat">
+              <div class="mission-stat-num">💚</div>
+              <div class="mission-stat-label">Profit-for-purpose business model</div>
+            </div>
+            <div class="mission-stat">
+              <div class="mission-stat-num">NSW #1</div>
+              <div class="mission-stat-label">Largest affordable housing portfolio</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team section -->
+      <div style="margin-top:5rem">
+        <div class="section-header text-center">
+          <div class="pill pill-sage pill-dot">Our People</div>
+          <h2 class="display-md" style="margin-top:0.75rem">Meet the team</h2>
+        </div>
+        <div class="grid-4" style="margin-top:2rem">
+          <div class="card card-p text-center">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--sage),var(--sage-light));border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;color:white;font-family:var(--font-display);font-size:1.5rem">A</div>
+            <div style="font-weight:600">Alex Thompson</div>
+            <div style="font-size:0.8rem;color:var(--ink-60);margin-top:0.25rem">Principal</div>
+          </div>
+          <div class="card card-p text-center">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,#1B3A2A,var(--sage));border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;color:white;font-family:var(--font-display);font-size:1.5rem">S</div>
+            <div style="font-weight:600">Sarah Mitchell</div>
+            <div style="font-size:0.8rem;color:var(--ink-60);margin-top:0.25rem">Senior Property Manager</div>
+          </div>
+          <div class="card card-p text-center">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--gold),#D4A853);border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;color:white;font-family:var(--font-display);font-size:1.5rem">J</div>
+            <div style="font-weight:600">James Okafor</div>
+            <div style="font-size:0.8rem;color:var(--ink-60);margin-top:0.25rem">Community Programs Manager</div>
+          </div>
+          <div class="card card-p text-center">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--coral),#D4825A);border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;color:white;font-family:var(--font-display);font-size:1.5rem">L</div>
+            <div style="font-weight:600">Lisa Nguyen</div>
+            <div style="font-size:0.8rem;color:var(--ink-60);margin-top:0.25rem">Tenant Relations Lead</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partners -->
+      <div style="margin-top:5rem">
+        <div class="section-header text-center">
+          <div class="pill pill-sage">Our Partners</div>
+          <h2 class="display-md" style="margin-top:0.75rem">Working together for better outcomes</h2>
+        </div>
+        <div class="partners-strip">
+          <div style="font-family:var(--font-display);font-size:1.5rem;opacity:0.45;letter-spacing:-0.02em">Barings</div>
+          <div style="font-family:var(--font-body);font-size:1rem;font-weight:600;opacity:0.4;letter-spacing:0.04em;text-transform:uppercase">City of Parramatta</div>
+          <div style="font-family:var(--font-body);font-size:1rem;font-weight:600;opacity:0.4;letter-spacing:0.04em;text-transform:uppercase">Willoughby City</div>
+          <div style="font-family:var(--font-body);font-size:1rem;font-weight:600;opacity:0.4;letter-spacing:0.04em;text-transform:uppercase">Evolve Housing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= FAQ PAGE ======= -->
+<div class="site-tab" id="tab-faq" style="padding-top:var(--nav-h)">
+  <div class="page-header">
+    <div class="container page-header-content">
+      <div class="pill pill-white pill-dot" style="margin-bottom:1rem">Help</div>
+      <h1 class="display-lg page-header-title">Frequently Asked Questions</h1>
+      <p class="page-header-sub">Can't find the answer? Our team is always happy to help.</p>
+    </div>
+  </div>
+  <section class="section bg-cream">
+    <div class="container" style="max-width:800px">
+      <div class="ah-accordion">
+        <div class="ah-accordion-item">
+          <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">What is affordable housing? <span class="ah-accordion-icon">+</span></button>
+          <div class="ah-accordion-body"><div class="ah-accordion-body-inner">Affordable housing offers secure housing for low to moderate income earners, filling the gap between social housing and the private rental market. It's priced so residents can afford other living costs including food, clothing, transport, medical care and education.</div></div>
+        </div>
+        <div class="ah-accordion-item">
+          <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">How do I apply for a rental property? <span class="ah-accordion-icon">+</span></button>
+          <div class="ah-accordion-body"><div class="ah-accordion-body-inner">Browse our available listings, confirm you meet the income eligibility criteria, then contact our team to begin your application. We'll guide you through income verification, property inspection, and the lease signing process.</div></div>
+        </div>
+        <div class="ah-accordion-item">
+          <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">What income threshold makes me eligible? <span class="ah-accordion-icon">+</span></button>
+          <div class="ah-accordion-body"><div class="ah-accordion-body-inner">Income thresholds vary by household size, composition, and property location. As a general guide, affordable housing is designed for households earning below the median income for their area. Contact our team for a personalised eligibility assessment.</div></div>
+        </div>
+        <div class="ah-accordion-item">
+          <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">How do I report a maintenance issue? <span class="ah-accordion-icon">+</span></button>
+          <div class="ah-accordion-body"><div class="ah-accordion-body-inner">Log into your Tenant Portal at client.propertytree.com to submit a maintenance request. For urgent after-hours emergencies, call our emergency maintenance line on 1800 693 246. We'll respond to urgent requests within 4 hours and routine requests within 2 business days.</div></div>
+        </div>
+        <div class="ah-accordion-item">
+          <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">I'm a property owner — how does EchoRealty work for me? <span class="ah-accordion-icon">+</span></button>
+          <div class="ah-accordion-body"><div class="ah-accordion-body-inner">We offer comprehensive property management services including tenant sourcing, rent collection, maintenance coordination, and regular reporting. Owners can also participate in our affordable housing programs — including head leasing, which provides guaranteed rental income with no vacancy periods.</div></div>
+        </div>
+        <div class="ah-accordion-item">
+          <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">Which states does EchoRealty operate in? <span class="ah-accordion-icon">+</span></button>
+          <div class="ah-accordion-body"><div class="ah-accordion-body-inner">EchoRealty manages properties across New South Wales (NSW), Victoria (VIC), and the Australian Capital Territory (ACT). Our flagship operations are in Greater Sydney, NSW, where we hold the largest affordable housing portfolio in the state.</div></div>
+        </div>
+        <div class="ah-accordion-item">
+          <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">What community support programs are available? <span class="ah-accordion-icon">+</span></button>
+          <div class="ah-accordion-body"><div class="ah-accordion-body-inner">EchoRealty offers a range of tenant support programs including financial literacy workshops, community engagement events, health and wellbeing referrals, education and employment support, and family programs. Contact your property manager to learn what's available in your area.</div></div>
+        </div>
+        <div class="ah-accordion-item">
+          <button class="ah-accordion-trigger" onclick="toggleAccordion(this)">Is EchoRealty a not-for-profit? <span class="ah-accordion-icon">+</span></button>
+          <div class="ah-accordion-body"><div class="ah-accordion-body-inner">EchoRealty is a profit-for-purpose business — we operate commercially but our profits are reinvested to create social impact. We are part of the Evolve Housing group, which includes a registered not-for-profit Community Housing Provider (CHP).</div></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:3rem;padding:2.5rem;background:var(--sage-ghost);border-radius:var(--radius-xl)">
+        <div style="font-size:1.5rem;margin-bottom:0.75rem">💬</div>
+        <div style="font-weight:600;font-size:1.125rem;margin-bottom:0.5rem">Still have questions?</div>
+        <p style="color:var(--ink-60);font-size:0.9375rem;margin-bottom:1.5rem">Our team is ready to help you find the answers you need.</p>
+        <button class="btn btn-primary" onclick="showTab('contact')">Contact Us</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= CONTACT PAGE ======= -->
+<div class="site-tab" id="tab-contact" style="padding-top:var(--nav-h)">
+  <div class="page-header">
+    <div class="container page-header-content">
+      <div class="pill pill-white pill-dot" style="margin-bottom:1rem">Contact</div>
+      <h1 class="display-lg page-header-title">Get in touch</h1>
+      <p class="page-header-sub">We love talking with our clients. Got a question? We're ready to help.</p>
+    </div>
+  </div>
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Info -->
+        <div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📞</div>
+            <div>
+              <div class="contact-info-label">Phone (Toll-free)</div>
+              <a href="tel:1800693246" class="contact-info-value">1800 693 246</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">✉️</div>
+            <div>
+              <div class="contact-info-label">Email</div>
+              <a href="mailto:info@echorealty.com.au" class="contact-info-value">info@echorealty.com.au</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🌐</div>
+            <div>
+              <div class="contact-info-label">Operating States</div>
+              <div class="contact-info-value" style="color:var(--ink)">NSW · VIC · ACT</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">⏰</div>
+            <div>
+              <div class="contact-info-label">Office Hours</div>
+              <div style="font-size:0.9375rem">Mon–Fri: 8:30am–5:30pm</div>
+              <div style="font-size:0.875rem;color:var(--ink-60)">Emergency maintenance: 24/7</div>
+            </div>
+          </div>
+          <div style="margin-top:2rem">
+            <div style="font-weight:600;margin-bottom:1rem;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-60)">Quick links</div>
+            <div style="display:flex;flex-direction:column;gap:0.5rem">
+              <a href="https://client.propertytree.com/login" target="_blank" class="btn btn-primary btn-sm" style="justify-content:flex-start">Tenant Portal Login ↗</a>
+              <button class="btn btn-outline btn-sm" onclick="showTab('listings')" style="justify-content:flex-start">Browse Properties →</button>
+              <button class="btn btn-outline btn-sm" onclick="showTab('affordable')" style="justify-content:flex-start">Affordable Housing Info →</button>
+            </div>
+          </div>
+          <div style="margin-top:2rem;padding:1.5rem;background:var(--sage-ghost);border-radius:var(--radius-lg)">
+            <div style="font-size:0.875rem;font-weight:600;color:var(--sage);margin-bottom:0.5rem">Part of Evolve Housing</div>
+            <p style="font-size:0.875rem;color:var(--ink-60);line-height:1.6">EchoRealty is part of the Evolve Housing group — one of Australia's leading not-for-profit Community Housing Providers.</p>
+            <a href="https://evolvehousing.com.au" target="_blank" style="font-size:0.875rem;color:var(--sage);font-weight:600;display:inline-block;margin-top:0.75rem">Visit Evolve Housing →</a>
+          </div>
+        </div>
+        <!-- Form -->
+        <div class="contact-form">
+          <h2 class="display-sm" style="margin-bottom:0.5rem">Send us a message</h2>
+          <p style="color:var(--ink-60);font-size:0.9rem;margin-bottom:2rem">We'll respond within one business day.</p>
+          <div class="form-group">
+            <label class="form-label">I am a…</label>
+            <select class="form-input form-select">
+              <option>Prospective Tenant</option>
+              <option>Current Tenant</option>
+              <option>Property Owner</option>
+              <option>Property Developer</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-input" placeholder="Jane">
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-input" placeholder="Smith">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="jane@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-input" placeholder="0400 000 000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">State</label>
+            <select class="form-input form-select">
+              <option>NSW</option>
+              <option>VIC</option>
+              <option>ACT</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-input form-textarea" placeholder="Tell us how we can help…"></textarea>
+          </div>
+          <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Send Message →</button>
+          <p style="font-size:0.8rem;color:var(--ink-60);text-align:center;margin-top:1rem">We'll respond within one business day. <a href="#" style="color:var(--sage)">Privacy Policy</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== FOOTER (shared) ===== -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-wrap">
+            <div class="footer-logo-text">Echo<span>Realty</span></div>
+          </div>
+          <div class="footer-tagline">Profit-for-purpose property management. Closing the housing gap across NSW, VIC & ACT.</div>
+          <div class="footer-social">
+            <a href="#" class="footer-social-btn" title="Facebook">f</a>
+            <a href="#" class="footer-social-btn" title="LinkedIn">in</a>
+            <a href="#" class="footer-social-btn" title="Instagram">ig</a>
+            <a href="#" class="footer-social-btn" title="Twitter">𝕏</a>
+          </div>
+          <div class="footer-lang" style="margin-top:1.25rem">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" opacity="0.4"><circle cx="7" cy="7" r="6" stroke="white" stroke-width="1"/><path d="M7 1C7 1 5 4 5 7C5 10 7 13 7 13" stroke="white" stroke-width="1"/><path d="M1 7H13" stroke="white" stroke-width="1"/></svg>
+            <select style="background:transparent;color:rgba(255,255,255,0.5);border:none;font-size:0.8rem;outline:none;cursor:pointer">
+              <option>English</option>
+              <option>Arabic</option>
+              <option>Vietnamese</option>
+              <option>Mandarin</option>
+              <option>Hindi</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Properties</div>
+          <a class="footer-link" href="#" onclick="showTab('listings')">Rental Listings</a>
+          <a class="footer-link" href="#" onclick="showTab('listings')">Featured Properties</a>
+          <a class="footer-link" href="#" onclick="showTab('listings')">NSW Properties</a>
+          <a class="footer-link" href="https://echorealty.com.au/vic">VIC Properties</a>
+          <a class="footer-link" href="https://echorealty.com.au/act">ACT Properties</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Tenants</div>
+          <a class="footer-link" href="https://client.propertytree.com/login" target="_blank">Tenant Portal</a>
+          <a class="footer-link" href="#" onclick="showTab('tenant')">Tenancy Information</a>
+          <a class="footer-link" href="#" onclick="showTab('tenant')">Renting Information</a>
+          <a class="footer-link" href="#" onclick="showTab('tenant')">Report a Repair</a>
+          <a class="footer-link" href="#" onclick="showTab('community')">Community Programs</a>
+          <a class="footer-link" href="#" onclick="showTab('faq')">FAQ</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Owners & Developers</div>
+          <a class="footer-link" href="#" onclick="showTab('owner')">Owner Portal</a>
+          <a class="footer-link" href="#" onclick="showTab('services')">Our Services</a>
+          <a class="footer-link" href="#" onclick="showTab('affordable')">Affordable Programs</a>
+          <a class="footer-link" href="#" onclick="showTab('affordable')">Developer Info</a>
+          <a class="footer-link" href="#" onclick="showTab('contact')">Free Appraisal</a>
+        </div>
+        <div>
+          <div class="footer-col-title">About</div>
+          <a class="footer-link" href="#" onclick="showTab('about')">Our Story</a>
+          <a class="footer-link" href="#" onclick="showTab('about')">Our Team</a>
+          <a class="footer-link" href="#" onclick="showTab('about')">Our Partners</a>
+          <a class="footer-link" href="#" onclick="showTab('about')">Awards</a>
+          <a class="footer-link" href="https://evolvehousing.com.au/about-us/publications/" target="_blank">Publications</a>
+          <a class="footer-link" href="#" onclick="showTab('about')">Careers</a>
+          <a class="footer-link" href="#" onclick="showTab('about')">News</a>
+          <a class="footer-link" href="#" onclick="showTab('contact')">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">© 2025 EchoRealty. All rights reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#" class="footer-bottom-link">Terms & Conditions</a>
+        <a href="#" class="footer-bottom-link">Privacy Policy</a>
+        <a href="https://evolvehousing.com.au" target="_blank" class="footer-bottom-link">Evolve Housing</a>
+      </div>
+      <div class="footer-bottom-evolve">
+        <span>Part of</span>
+        <span class="footer-evolve-badge">Evolve Housing Group</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== AI ASSISTANT ===== -->
+<div class="ai-chip">
+  <button class="ai-chip-btn" onclick="toggleAI()">
+    <div class="ai-chip-dot"></div>
+    Ask EchoAI
+  </button>
+</div>
+<div class="ai-panel" id="aiPanel">
+  <div class="ai-panel-header">
+    <div class="ai-panel-title">
+      <div class="ai-chip-dot"></div>
+      EchoAI Assistant
+    </div>
+    <button class="ai-panel-close" onclick="toggleAI()">✕</button>
+  </div>
+  <div class="ai-panel-messages" id="aiMessages">
+    <div class="ai-msg ai-msg-bot">Hi! I'm EchoAI 👋 I can help you find properties, understand affordable housing eligibility, or answer tenancy questions. What can I help you with today?</div>
+  </div>
+  <div class="ai-quick" id="aiQuick">
+    <button class="ai-quick-btn" onclick="sendAI(this,'Am I eligible for affordable housing?')">Eligibility check</button>
+    <button class="ai-quick-btn" onclick="sendAI(this,'How do I apply?')">How to apply</button>
+    <button class="ai-quick-btn" onclick="sendAI(this,'Show me 2 bedroom properties')">2 bed properties</button>
+    <button class="ai-quick-btn" onclick="sendAI(this,'I need to report a repair')">Report repair</button>
+  </div>
+  <div class="ai-input-row">
+    <input class="ai-input" id="aiInput" type="text" placeholder="Ask me anything…" onkeydown="if(event.key==='Enter')sendAI(null,this.value)">
+    <button class="ai-send" onclick="sendAI(null,document.getElementById('aiInput').value)">→</button>
+  </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// Tab navigation
+function showTab(tab) {
+  document.querySelectorAll('.site-tab').forEach(t => t.classList.remove('active'));
+  const el = document.getElementById('tab-' + tab);
+  if (el) { el.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+  // Update nav appearance
+  updateNav();
+}
+
+// Nav scroll behavior
+const nav = document.getElementById('mainNav');
+function updateNav() {
+  const activeTab = document.querySelector('.site-tab.active');
+  const isHome = activeTab && activeTab.id === 'tab-home';
+  if (isHome && window.scrollY < 80) {
+    nav.classList.remove('nav-scrolled');
+  } else {
+    nav.classList.add('nav-scrolled');
+  }
+}
+window.addEventListener('scroll', updateNav, {passive:true});
+updateNav();
+
+// Mobile menu
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+}
+
+// Accordion
+function toggleAccordion(btn) {
+  const item = btn.closest('.ah-accordion-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.ah-accordion-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Testimonial scroll
+function scrollTestimonials(idx) {
+  const track = document.getElementById('testimonialTrack');
+  const card = track.children[idx];
+  if (card) track.scrollTo({left: card.offsetLeft - 24, behavior:'smooth'});
+  document.querySelectorAll('.t-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+}
+
+// AI Panel
+let aiOpen = false;
+function toggleAI() {
+  aiOpen = !aiOpen;
+  document.getElementById('aiPanel').classList.toggle('open', aiOpen);
+}
+
+const aiResponses = {
+  'eligib': "To be eligible for affordable housing, you generally need to earn below the median income for your area. Exact thresholds depend on household size and location. Our team can assess your eligibility — call 1800 693 246 or contact us online.",
+  'apply': "To apply: 1️⃣ Browse our available listings. 2️⃣ Confirm your income meets the eligibility threshold. 3️⃣ Contact our team to start your application. We'll guide you through income verification and the full process.",
+  '2 bed': "Great choice! We have several 2-bedroom affordable properties available right now across Parramatta, Blacktown, Westmead and Ryde. Click 'Browse Properties' to see the full list with current availability.",
+  'repair': "To report a repair, log in to your Tenant Portal at client.propertytree.com. For urgent after-hours emergencies, call 1800 693 246. We respond to urgent requests within 4 hours.",
+  'default': "That's a great question! For personalised help, our team is available Mon–Fri 8:30am–5:30pm at 1800 693 246 or info@echorealty.com.au. I can also help you browse properties, check eligibility, or find tenant resources."
+};
+
+function sendAI(btn, text) {
+  if (!text || !text.trim()) return;
+  const messages = document.getElementById('aiMessages');
+  document.getElementById('aiQuick').style.display = 'none';
+  // User msg
+  const userMsg = document.createElement('div');
+  userMsg.className = 'ai-msg ai-msg-user';
+  userMsg.textContent = text;
+  messages.appendChild(userMsg);
+  document.getElementById('aiInput').value = '';
+  // Bot response
+  setTimeout(() => {
+    const key = Object.keys(aiResponses).find(k => text.toLowerCase().includes(k)) || 'default';
+    const botMsg = document.createElement('div');
+    botMsg.className = 'ai-msg ai-msg-bot';
+    botMsg.textContent = aiResponses[key];
+    messages.appendChild(botMsg);
+    messages.scrollTop = messages.scrollHeight;
+  }, 600);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
+
+// Testimonial auto-scroll
+let tIdx = 0;
+setInterval(() => {
+  tIdx = (tIdx + 1) % 4;
+  scrollTestimonials(tIdx);
+}, 5000);
+</script>
+</body>
+</html>
